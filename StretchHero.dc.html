@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Stretch hero — OFRI EVEN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Archivo+Black&amp;family=Figtree:wght@500;700&amp;display=swap">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Archivo+Black&amp;family=Figtree:wght@500;700&amp;display=swap">
+<style>
+:root { --blue: #1818EA; --lime: #CAF51E; --white: #FFFFFF; --black: #0A0A0A; --ink: #161A25; }
+body{margin:0}
+@keyframes sh-bob { 0%, 100% { transform: translateY(-12%); } 50% { transform: translateY(12%); } }
+.sh-arrow { animation: sh-bob 1.6s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
+@media (prefers-reduced-motion: reduce) { .sh-arrow { animation: none; } }
+</style>
+</helmet>
+<div role="img" aria-label="Ofri Even — Brand and Motion Designer" style="position: relative; width: 100%; height: min(100svh, 62.5vw); min-height: 480px; box-sizing: border-box; padding: {{ padTop }}px {{ padX }} {{ padBottom }}px; display: flex; flex-direction: column; background: {{ bg }}; border-radius: {{ radius }}px; overflow: hidden">
+<div ref="{{ rootRef }}" style="flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; gap: {{ gap }}px">
+<div style="height: {{ hTop }}px; flex: none; display: flex; gap: {{ gap }}px">
+<sc-for list="{{ top }}" as="l" hint-placeholder-count="4">
+<div style="width: {{ l.w }}px; height: 100%; flex: none; position: relative">
+<span style="position: absolute; left: 0; top: 0; display: block; font-family: '{{ fam }}', sans-serif; font-weight: 400; font-size: 200px; line-height: 200px; white-space: pre; transform-origin: 0 0; transform: translate({{ l.x }}px, {{ l.y }}px) scale({{ l.sx }}, {{ l.sy }}); color: {{ ink }}">{{ l.ch }}</span>
+</div>
+</sc-for>
+</div>
+<div style="height: {{ hBot }}px; flex: none; display: flex; gap: {{ gap }}px">
+<sc-for list="{{ bot }}" as="l" hint-placeholder-count="4">
+<div style="width: {{ l.w }}px; height: 100%; flex: none; position: relative">
+<span style="position: absolute; left: 0; top: 0; display: block; font-family: '{{ fam }}', sans-serif; font-weight: 400; font-size: 200px; line-height: 200px; white-space: pre; transform-origin: 0 0; transform: translate({{ l.x }}px, {{ l.y }}px) scale({{ l.sx }}, {{ l.sy }}); color: {{ ink }}">{{ l.ch }}</span>
+</div>
+</sc-for>
+</div>
+</div>
+<sc-if value="{{ showStar }}" hint-placeholder-val="{{ true }}">
+<div style="position: absolute; right: {{ starInset }}px; bottom: {{ starInset }}px; width: {{ star }}px; height: {{ star }}px; transform: rotate(10deg)">
+<div aria-hidden="true" style="position: absolute; left: 0; top: 37%; width: 100%; height: 26%; background: {{ accent }}; transform: rotate(0deg)"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 37%; width: 100%; height: 26%; background: {{ accent }}; transform: rotate(45deg)"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 37%; width: 100%; height: 26%; background: {{ accent }}; transform: rotate(90deg)"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 37%; width: 100%; height: 26%; background: {{ accent }}; transform: rotate(135deg)"></div>
+<p style="position: absolute; left: 0; top: {{ starNudge }}px; width: 100%; height: 100%; margin: 0; display: flex; align-items: center; justify-content: center; text-align: center; font-family: Figtree, sans-serif; font-weight: 700; font-size: {{ starText }}px; line-height: 1.02; letter-spacing: -0.01em; color: var(--black)">Brand &amp; Motion<br>Designer</p>
+<sc-if value="{{ showArrow }}" hint-placeholder-val="{{ true }}"><div aria-hidden="true" style="position: absolute; left: 50%; top: 67%; width: {{ arrowSize }}px; height: {{ arrowSize }}px; margin-left: -{{ arrowHalf }}px">
+<svg class="sh-arrow" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display: block; width: 100%; height: 100%"><path d="M12 3v17"></path><path d="M5 13l7 7 7-7"></path></svg>
+</div></sc-if>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"bg":{"editor":"color","default":"#1818EA","options":["#1818EA","#161A25","#CAF51E"],"section":"Color"},"ink":{"editor":"color","default":"#FFFFFF","options":["#FFFFFF","#161A25","#CAF51E"],"section":"Color"},"accent":{"editor":"color","default":"#CAF51E","options":["#CAF51E","#FFFFFF","#1818EA"],"section":"Color"},"speed":{"editor":"range","default":0.85,"min":0.3,"max":2.5,"step":0.1,"section":"Motion"},"stretch":{"editor":"range","default":1,"min":0.3,"max":1.6,"step":0.1,"section":"Motion"},"easing":{"editor":"enum","default":"smooth","options":["smooth","flow","soft","snappy"],"section":"Motion"},"playing":{"editor":"boolean","default":true,"section":"Motion"},"family":{"editor":"enum","default":"Anton","options":["Anton","Archivo Black"],"section":"Type"},"radius":{"editor":null,"tsType":"string"},"topSpace":{"editor":null,"tsType":"string"},"bottomSpace":{"editor":null,"tsType":"string"},"padX":{"editor":null,"tsType":"string"},"hideStar":{"editor":null,"tsType":"string"},"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { t: Number(props && props.time) || 0, w: 1392, h: 783 };
+    this.rootRef = React.createRef();
+    this.raf = null;
+    this.last = null;
+    this.tick = this.tick.bind(this);
+  }
+  componentDidMount() {
+    this.raf = requestAnimationFrame(this.tick);
+    this.measureBox = () => {
+      const el = this.rootRef.current;
+      if (!el) return;
+      const r = { width: el.clientWidth, height: el.clientHeight };
+      const fw = el.parentNode ? el.parentNode.clientWidth : r.width;
+      if (r.width && (Math.abs(r.width - this.state.w) > 0.5 || Math.abs(r.height - this.state.h) > 0.5 || Math.abs(fw - (this.state.fw || 0)) > 0.5)) this.setState({ w: r.width, h: r.height, fw: fw });
+    };
+    this.measureBox();
+    if ('ResizeObserver' in window) { this.ro = new ResizeObserver(this.measureBox); if (this.rootRef.current) this.ro.observe(this.rootRef.current); }
+    try {
+      Promise.all([document.fonts.load('400 200px Anton'), document.fonts.load('400 200px "Archivo Black"')]).then(() => { this.metrics = {}; this.forceUpdate(); });
+    } catch (e) {}
+  }
+  componentWillUnmount() {
+    if (this.raf) cancelAnimationFrame(this.raf);
+    if (this.ro) this.ro.disconnect();
+  }
+  tick(now) {
+    if (this.last == null) this.last = now;
+    const dt = Math.min(0.1, (now - this.last) / 1000);
+    this.last = now;
+    if (this.props.playing !== false) {
+      const sp = this.props.speed ?? 0.85;
+      this.setState({ t: this.state.t + dt * sp });
+    }
+    this.raf = requestAnimationFrame(this.tick);
+  }
+  bez(x1, y1, x2, y2, x) {
+    const cx = 3 * x1, bx = 3 * (x2 - x1) - cx, ax = 1 - cx - bx;
+    const cy = 3 * y1, by = 3 * (y2 - y1) - cy, ay = 1 - cy - by;
+    const fx = (t) => ((ax * t + bx) * t + cx) * t;
+    const dfx = (t) => (3 * ax * t + 2 * bx) * t + cx;
+    let t = x;
+    for (let i = 0; i < 8; i++) {
+      const d = dfx(t);
+      if (Math.abs(d) < 1e-6) break;
+      const nt = t - (fx(t) - x) / d;
+      if (Math.abs(nt - t) < 1e-6) { t = nt; break; }
+      t = nt;
+    }
+    if (!(t >= 0 && t <= 1)) {
+      let lo = 0, hi = 1; t = x;
+      for (let i = 0; i < 30; i++) { if (fx(t) < x) lo = t; else hi = t; t = (lo + hi) / 2; }
+    }
+    return ((ay * t + by) * t + cy) * t;
+  }
+  ease(x, kind) {
+    x = Math.max(0, Math.min(1, x));
+    if (kind === 'soft') return -(Math.cos(Math.PI * x) - 1) / 2;
+    if (kind === 'snappy') {
+      if (x === 0 || x === 1) return x;
+      return x < 0.5 ? Math.pow(2, 20 * x - 10) / 2 : (2 - Math.pow(2, -20 * x + 10)) / 2;
+    }
+    return this.bez(0.6, 0, 0.15, 1, x);
+  }
+  measure(ch, fam) {
+    this.metrics = this.metrics || {};
+    const key = fam + '|' + ch;
+    if (this.metrics[key]) return this.metrics[key];
+    this.cv = this.cv || document.createElement('canvas');
+    const ctx = this.cv.getContext('2d');
+    ctx.font = '400 200px "' + fam + '", sans-serif';
+    const m = ctx.measureText(ch);
+    const fa = m.fontBoundingBoxAscent || 194, fd = m.fontBoundingBoxDescent || 48;
+    const base = (200 - (fa + fd)) / 2 + fa;
+    const out = {
+      l: m.actualBoundingBoxLeft || 0,
+      w: (m.actualBoundingBoxLeft || 0) + (m.actualBoundingBoxRight || m.width),
+      top: base - (m.actualBoundingBoxAscent || 145),
+      h: (m.actualBoundingBoxAscent || 145) + (m.actualBoundingBoxDescent || 0)
+    };
+    this.metrics[key] = out;
+    return out;
+  }
+  renderVals() {
+    const POSES = [
+      { r: 0.5,  top: [1, 1, 1, 1],    bot: [1, 1, 1, 1] },
+      { r: 0.74, top: [6, 1, 1, 0.5],  bot: [1, 1, 1, 5] },
+      { r: 0.3,  top: [1, 0.7, 5, 0.5], bot: [0.8, 7, 1, 1] },
+      { r: 0.62, top: [0.6, 1, 1, 6],  bot: [1, 1, 1, 6] },
+      { r: 0.2,  top: [1, 5, 1, 0.6],  bot: [6, 1, 0.8, 0.7] },
+      { r: 0.82, top: [1, 1, 1, 1],    bot: [1, 0.7, 5, 1] },
+      { r: 0.4,  top: [4, 0.6, 0.6, 4], bot: [0.6, 3, 3, 0.6] }
+    ];
+    const kind = this.props.easing ?? 'smooth';
+    const fam = this.props.family ?? 'Anton';
+    const amt = this.props.stretch ?? 1;
+    const flow = kind === 'flow';
+    const MOVE = kind === 'snappy' ? 1.1 : 1.55;
+    const HOLD = flow ? 0 : (kind === 'snappy' ? 0.55 : 0.4);
+    const SEG = flow ? 1.6 : MOVE + HOLD;
+    const N = POSES.length;
+    const LOOP = N * SEG;
+    const t = ((this.state.t % LOOP) + LOOP) % LOOP;
+    const seg = Math.floor(t / SEG);
+    const local = t - seg * SEG;
+    const P = (k) => POSES[((seg + k) % N + N) % N];
+    const P0 = P(-1), P1 = P(0), P2 = P(1), P3 = P(2);
+    let u;
+    if (flow) { const lin = local / SEG; u = 0.45 * lin + 0.55 * this.ease(lin, 'soft'); }
+    else u = this.ease(local / MOVE, kind);
+    const interp = (a0, a1, a2, a3, x) => {
+      if (!flow) return a1 + (a2 - a1) * x;
+      const x2 = x * x, x3 = x2 * x;
+      return 0.5 * ((2 * a1) + (-a0 + a2) * x + (2 * a0 - 5 * a1 + 4 * a2 - a3) * x2 + (-a0 + 3 * a1 - 3 * a2 + a3) * x3);
+    };
+    const W = this.state.w, H = this.state.h, FW = this.state.fw || W;
+    const pad = Math.max(12, Math.round(FW * 0.017));
+    const gap = Math.max(6, Math.round(FW * 0.0094));
+    const hasPadX = !!this.props.padX;
+    const padX = hasPadX ? this.props.padX : pad + 'px';
+    const padTop = Math.max(pad, Number(this.props.topSpace) || 0);
+    const padBottom = Math.max(pad, Number(this.props.bottomSpace) || 0);
+    const IW = W, IH = H;
+    const r = Math.max(0.12, Math.min(0.88, interp(P0.r, P1.r, P2.r, P3.r, u)));
+    const hTop = (IH - gap) * r, hBot = (IH - gap) * (1 - r);
+    const weights = (row) => [0, 1, 2, 3].map((i) => {
+      const L = Math.log;
+      return Math.exp(interp(L(P0[row][i]), L(P1[row][i]), L(P2[row][i]), L(P3[row][i]), u) * amt);
+    });
+    const letters = (chars, gs, rowH) => {
+      const sum = gs.reduce((a, b) => a + b, 0);
+      const avail = IW - gap * (chars.length - 1);
+      return chars.map((ch, i) => {
+        const cw = avail * gs[i] / sum;
+        const m = this.measure(ch, fam);
+        const sx = cw / m.w, sy = rowH / m.h;
+        return { ch: ch, w: cw.toFixed(2), sx: sx.toFixed(5), sy: sy.toFixed(5), x: (m.l * sx).toFixed(2), y: (-m.top * sy).toFixed(2) };
+      });
+    };
+    const star = Math.round(Math.max(135, Math.min(270, FW * 0.162)));
+    const k = star / 330;
+    return {
+      rootRef: this.rootRef,
+      bg: this.props.bg ?? 'var(--blue)',
+      ink: this.props.ink ?? 'var(--white)',
+      accent: this.props.accent ?? 'var(--lime)',
+      fam: fam,
+      pad: pad,
+      padTop: padTop,
+      padX: padX,
+      padBottom: padBottom,
+      gap: gap,
+      radius: this.props.radius !== undefined && this.props.radius !== '' ? Number(this.props.radius) : Math.round(Math.max(14, Math.min(34, W * 0.024))),
+      hTop: hTop.toFixed(2),
+      hBot: hBot.toFixed(2),
+      top: letters(['O', 'F', 'R', 'I'], weights('top'), hTop),
+      bot: letters(['E', 'V', 'E', 'N'], weights('bot'), hBot),
+      star: star,
+      starInset: Math.round(64 * k),
+      starText: (31 * k).toFixed(1),
+      showStar: !(this.props.hideStar === true || this.props.hideStar === 'true'),
+      starNudge: (this.props.hideArrow === true || this.props.hideArrow === "true") ? 0 : Math.round(9 * k),
+      showArrow: !(this.props.hideArrow === true || this.props.hideArrow === "true"),
+      arrowSize: Math.round(44 * k),
+      arrowHalf: Math.round(22 * k)
+    };
+  }
+}
+</script>
+</body>
+</html>

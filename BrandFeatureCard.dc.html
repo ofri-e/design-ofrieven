@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&amp;family=Figtree:ital,wght@0,300..900;1,300..900&amp;display=swap" rel="stylesheet">
+<style>
+:root { --ink-rgb: 22,26,37; --ink: #161A25; --line: #DEE5F2; --surface-2: #E8EDF8; --surface: #F4F7FD; --text-2: #61697B; --text-3: #A2ABBE; --white: #FFFFFF; --blue: #1818EA; --lime: #CAF51E; --orange: var(--lime); --black: #0A0A0A; --font-head: 'Funnel Sans',sans-serif; --font-body: Figtree,sans-serif; --fs-xs: clamp(11px,calc(0.19vw + 10.26px),13px); --fs-sm: clamp(13px,calc(0.19vw + 12.26px),15px); --fs-tag: clamp(12px,calc(0.5vw + 8px),15px); --fs-card-tag: clamp(12px,calc(0.45vw + 7.6px),14px); --fs-section: clamp(40px,5vw,88px); --radius-card: 16px; --radius-btn: 12px; --radius-tag: 0.67em; }
+body { margin: 0; background: var(--white); }
+
+.t-display { font-family:var(--font-head); font-weight: 600; font-synthesis: none;  font-size: clamp(48px,10.5vw,272px);  line-height: 1; letter-spacing: -0.03em; }
+.t-h1 { font-family:var(--font-head); font-weight: 600; font-synthesis: none;  font-size: clamp(44px,7vw,104px);  line-height: 1.1; letter-spacing: -0.03em; }
+.t-h1-caps { letter-spacing: -0.03em; }
+.t-h2 { font-family:var(--font-head); font-weight: 600; font-synthesis: none;  font-size: clamp(28px,calc(2vw + 20px),44px);  line-height: 1.25; letter-spacing: -0.03em; }
+.t-h4 { font-family:var(--font-head); font-weight: 600; font-synthesis: none;  font-size: clamp(18px,calc(0.2vw + 16px),20px);  line-height: 1.3; letter-spacing: -0.03em; }
+.t-lead { font-family:var(--font-head); font-size: clamp(20px,calc(0.6vw + 16px),28px); font-weight: 400; line-height: 1.45; letter-spacing: -0.02em; }
+.t-nav { font-family:var(--font-head); font-size: clamp(18px,calc(0.4vw + 15px),22px); font-weight: 400; line-height: 1.5; letter-spacing: -0.01em; }
+.t-menu { font-family:var(--font-head); font-size: clamp(36px,11vw,56px); font-weight: 400; line-height: 1.1; letter-spacing: -0.03em; }
+.t-body-lg { font-family:var(--font-body); font-size: clamp(16px,calc(0.15vw + 15px),18px); font-weight: 400; line-height: 1.6; }
+.t-body { font-family:var(--font-body); font-size: 16px; font-weight: 400; line-height: 24px; }
+.t-body-sm { font-family:var(--font-body); font-size: 14px; font-weight: 400; line-height: 20px; }
+.t-medium { font-weight: 500; }
+.t-body-strong { font-family:var(--font-body); font-size: 16px; font-weight: 500; line-height: 24px; }
+.t-label { font-family:var(--font-body); font-size: 14px; font-weight: 500; line-height: 20px; letter-spacing: 0.03em; }
+.t-button { font-family:var(--font-body); font-size: 12px; font-weight: 700; line-height: 1.2; letter-spacing: 0.04em; }
+.t-caption { font-family:var(--font-body); font-size: 12px; font-weight: 500; line-height: 1.5; }
+
+a { color: inherit; text-decoration: none; }
+
+.bfc { display:block; color:var(--white); text-decoration:none; }
+.bfc-card { position:relative; overflow:hidden; aspect-ratio:16/10; border-radius:8px; background:var(--ink); isolation:isolate; }
+.bfc-media { position:absolute; inset:0; transform:scale(1); transition:transform 1200ms cubic-bezier(0.16,1,0.3,1); }
+.bfc-shade { position:absolute; inset:0; pointer-events:none; background:linear-gradient(180deg, rgba(10,10,10,0) 38%, rgba(10,10,10,0.55) 68%, rgba(10,10,10,0.88) 100%); opacity:0.9; transition:opacity 600ms cubic-bezier(0.22,1,0.36,1); }
+.bfc-info { position:absolute; left:clamp(20px,2.4vw,40px); right:clamp(20px,2.4vw,40px); bottom:clamp(20px,2.4vw,40px); display:flex; flex-direction:column; gap:clamp(6px,0.6vw,10px); transform:translateY(0); transition:transform 600ms cubic-bezier(0.22,1,0.36,1); }
+.bfc-title { margin:0; font-family:var(--font-head); font-weight:600; font-synthesis:none; font-size:clamp(32px,3.4vw,60px); line-height:1.02; letter-spacing:-0.035em; color:var(--white); }
+.bfc-desc { margin:0; max-width:44ch; font-family:var(--font-body); font-weight:400; font-size:clamp(16px,1.25vw,20px); line-height:1.4; color:var(--white); text-wrap:pretty; }
+.bfc-tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:clamp(6px,0.6vw,10px); }
+.bfc-pill { font-family:var(--font-body); font-weight:500; font-size:var(--fs-card-tag); line-height:1.3; letter-spacing:0; text-transform:none; color:var(--white); border:1px solid var(--white); border-radius:0.67em; padding:0.36em 0.75em; white-space:nowrap; }
+.bfc-btn { position:absolute; top:clamp(14px,1.6vw,24px); right:clamp(14px,1.6vw,24px); display:flex; align-items:center; justify-content:center; width:clamp(44px,3.6vw,56px); height:clamp(44px,3.6vw,56px); border-radius:50%; color:var(--black); background:var(--white); transform:scale(1); transition:background-color 350ms cubic-bezier(0.22,1,0.36,1), color 350ms cubic-bezier(0.22,1,0.36,1), transform 500ms cubic-bezier(0.34,1.56,0.64,1); }
+.bfc-arrow { display:block; width:42%; height:42%; transform:rotate(0deg); transition:transform 500ms cubic-bezier(0.34,1.56,0.64,1); }
+@media (hover: hover) {
+  .bfc:not(.bfc-soon):hover .bfc-media { transform:scale(1.06); }
+  .bfc:not(.bfc-soon):hover .bfc-shade { opacity:1; }
+  .bfc:not(.bfc-soon):hover .bfc-info { transform:translateY(-6px); }
+  .bfc:not(.bfc-soon):hover .bfc-btn { background-color:var(--blue); color:var(--white); transform:scale(1.1); }
+  .bfc:not(.bfc-soon):hover .bfc-arrow { transform:rotate(45deg); }
+}
+.bfc-soon { cursor:default; }
+.bfc-chip { position:absolute; top:clamp(14px,1.6vw,24px); right:clamp(14px,1.6vw,24px); font-family:var(--font-body); font-weight:600; font-size:clamp(12px,calc(0.19vw + 11.26px),14px); line-height:1; color:var(--black); background:var(--lime); border-radius:6px; padding:8px 12px; white-space:nowrap; }
+@media (prefers-reduced-motion: reduce) { .bfc-media, .bfc-info, .bfc-btn, .bfc-arrow, .bfc-shade { transition:none; } }
+</style>
+</helmet>
+<a href="{{ href }}" onClick="{{ onNav }}" class="bfc{{ soonCls }}">
+  <div ref="{{ panelRef }}" class="bfc-card" style="aspect-ratio:{{ ratio }};border-radius:{{ cardRadius }}px">
+    <div class="bfc-media">
+      <div style="{{ mediaStyle }}"></div>
+      <sc-if value="{{ hasVideo }}" hint-placeholder-val="{{ false }}">
+        <video ref="{{ vidRef }}" src="{{ video }}" muted="{{ true }}" loop="{{ true }}" autoPlay="{{ true }}" playsInline="{{ true }}" preload="auto" onPlaying="{{ onPlaying }}" style="{{ videoStyle }}"></video>
+      </sc-if>
+    </div>
+    <span class="t-caption" style="{{ labelStyle }}">{{ placeholderLabel }}</span>
+    <div class="bfc-shade" aria-hidden="true"></div>
+    <sc-if value="{{ soon }}" hint-placeholder-val="{{ false }}"><span class="bfc-chip">Coming soon</span></sc-if>
+    <sc-if value="{{ notSoon }}" hint-placeholder-val="{{ true }}"><span aria-hidden="true" class="bfc-btn"><svg class="bfc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></span></sc-if>
+    <div class="bfc-info">
+      <h3 class="bfc-title">{{ title }}</h3>
+      <p class="bfc-desc">{{ desc }}</p>
+      <div class="bfc-tags">
+        <sc-for list="{{ tagList }}" as="t" hint-placeholder-count="3"><span class="bfc-pill">{{ t.label }}</span></sc-for>
+      </div>
+    </div>
+  </div>
+</a>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;radius&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;string&quot;, &quot;default&quot;: &quot;16&quot;}, &quot;ratio&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;default&quot;: &quot;10/9&quot;, &quot;options&quot;: [&quot;16/9&quot;, &quot;10/9&quot;, &quot;16/10&quot;, &quot;4/3&quot;, &quot;5/4&quot;, &quot;1/1&quot;], &quot;tsType&quot;: &quot;string&quot;}, &quot;$preview&quot;: {&quot;width&quot;: 720, &quot;height&quot;: 648}, &quot;title&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Expoza&quot;, &quot;tsType&quot;: &quot;string&quot;}, &quot;desc&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Typographic identity spotlighting Israel’s next theatre actors.&quot;, &quot;tsType&quot;: &quot;string&quot;}, &quot;tagLine&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Branding &amp; Identity - Web - Motion&quot;, &quot;tsType&quot;: &quot;string&quot;}, &quot;img&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;assets/brand/expoza-cover.webp&quot;, &quot;tsType&quot;: &quot;string&quot;}, &quot;video&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;&quot;, &quot;tsType&quot;: &quot;string&quot;}, &quot;href&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;#&quot;, &quot;tsType&quot;: &quot;string&quot;}, &quot;hoverColor&quot;: {&quot;editor&quot;: &quot;color&quot;, &quot;default&quot;: &quot;var(--surface)&quot;, &quot;options&quot;: [&quot;var(--surface)&quot;, &quot;var(--surface-2)&quot;, &quot;var(--white)&quot;, &quot;var(--ink)&quot;], &quot;tsType&quot;: &quot;string&quot;}, &quot;hoverScale&quot;: {&quot;editor&quot;: &quot;range&quot;, &quot;default&quot;: 0.94, &quot;min&quot;: 0.86, &quot;max&quot;: 1, &quot;step&quot;: 0.01, &quot;tsType&quot;: &quot;number&quot;}, &quot;onNav&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;(e: MouseEvent) =&gt; void&quot;}, &quot;tags&quot;: {&quot;editor&quot;: null, &quot;default&quot;: [&quot;Branding &amp; Identity&quot;, &quot;Web&quot;, &quot;Motion&quot;]}}">
+const STRIPES = "repeating-linear-gradient(135deg,var(--surface) 0 10px,var(--surface-2) 10px 20px)";
+
+class Component extends DCLogic {
+  state = { on: false, vidOn: false, tiny: false, ratio: 0 };
+  panelRef = React.createRef();
+  vidRef = React.createRef();
+
+  playVideo(on) {
+    const v = this.vidRef.current;
+    if (!v) return;
+    if (on) { try { v.currentTime = 0; const p = v.play(); if (p && p.catch) p.catch(() => {}); } catch (e) {} }
+    else { this.setState({ vidOn: false }); v.pause(); try { v.currentTime = 0; } catch (e) {} }
+  }
+
+  componentDidMount() {
+    this.measure = () => {
+      const el = this.panelRef.current;
+      const r = el ? el.getBoundingClientRect() : null;
+      this.setState({
+        tiny: window.innerWidth < 520 || (r && r.width ? r.width < 520 : false),
+        ratio: r && r.width ? r.height / r.width : 0
+      });
+    };
+    this.measure();
+    requestAnimationFrame(this.measure);
+    window.addEventListener("resize", this.measure, { passive: true });
+    if ("ResizeObserver" in window) this.ro = new ResizeObserver(() => this.measure());
+    if ("IntersectionObserver" in window) {
+      this.io = new IntersectionObserver(([e]) => {
+        const v = this.vidRef.current;
+        if (!v) return;
+        const vis = e.isIntersecting && e.intersectionRatio >= 0.5;
+        if (vis === !!this.state.inView) return;
+        this.setState({ inView: vis });
+        if (vis) { v.loop = true; v.muted = true; const p = v.play(); if (p && p.catch) p.catch(() => {}); }
+        else v.pause();
+      }, { threshold: [0, 0.5, 1] });
+    }
+    this.attach();
+    let n = 0; const retry = () => { if (this.attached || n++ > 60) return; this.attach(); requestAnimationFrame(retry); }; requestAnimationFrame(retry);
+  }
+  attach() {
+    const el = this.panelRef.current;
+    if (!el || this.attached === el) return;
+    this.attached = el;
+    if (this.ro) this.ro.observe(el);
+    if (this.io) this.io.observe(el);
+    this.measure && this.measure();
+  }
+  componentDidUpdate() { this.attach(); }
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.measure);
+    if (this.io) this.io.disconnect();
+    if (this.ro) this.ro.disconnect();
+  }
+
+  renderVals() {
+    const __D = {"title": "Expoza", "desc": "Typographic identity spotlighting Israel’s next theatre actors.", "tags": ["Branding & Identity", "Web", "Motion"], "tagLine": "Branding & Identity - Web - Motion", "href": "#", "img": "assets/brand/expoza-cover.webp", "video": ""};
+    const __p = this.props.title === undefined ? Object.assign({}, __D, Object.fromEntries(Object.entries(this.props).filter(([, v]) => v !== undefined))) : this.props;
+    const on = this.state.on;
+    const img = __p.img || "";
+    const title = __p.title || "";
+    const tiny = this.state.tiny;
+    const sy = __p.hoverScale ?? 0.94;
+    const sx = sy;
+    return {
+      href: __p.href || "#",
+      soon: !!__p.soon,
+      notSoon: !__p.soon,
+      soonCls: __p.soon ? " bfc-soon" : "",
+      title: title,
+      desc: __p.desc || "",
+      tagLine: __p.tagLine || "",
+      tagList: (__p.tags || (__p.tagLine ? __p.tagLine.split(/\s*[·-]\s*/) : [])).map(label => ({ label })),
+      tagWrap: "display:flex;flex-wrap:wrap;gap:8px;justify-content:" + (tiny ? "flex-start" : "flex-end") + ";padding-top:" + (tiny ? "0" : "6px") + ";flex-shrink:1;min-width:0;max-width:" + (tiny ? "none" : "50%"),
+      placeholderLabel: img ? "" : title + " — image",
+      onNav: __p.onNav,
+      enter: () => { if (window.matchMedia("(hover: none)").matches) return; this.setState({ on: true }); },
+      leave: () => { this.setState({ on: false }); },
+      panelRef: this.panelRef,
+      vidRef: this.vidRef,
+      video: __p.video || "",
+      hasVideo: !!__p.video,
+      onPlaying: () => { if (!this.state.vidOn) this.setState({ vidOn: true }); },
+      videoStyle: "position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:" + (this.state.vidOn ? 1 : 0) + ";transition:opacity 300ms ease;pointer-events:none;",
+      panelStyle: "border-radius:6px;background:" + (on ? (__p.hoverColor || "var(--surface)") : "transparent") + ";transition:background 450ms cubic-bezier(0.16,1,0.3,1);",
+      scaleStyle: "transform-origin:50% 50%;will-change:transform;backface-visibility:hidden;transform:scale(" + (on ? sx : 1) + "," + (on ? sy : 1) + ");transition:transform 420ms cubic-bezier(0.4,0,0.2,1);",
+      mediaStyle: "position:absolute;inset:0;background-position:center;background-repeat:no-repeat;" + (img ? "background-image:url('" + img + "');background-size:cover;" : "background-image:" + STRIPES + ";"),
+      labelStyle: img ? "display:none" : "position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);text-align:center;color:var(--text-2);padding:0 16px",
+      capStyle: "",
+      ratio: __p.ratio || "10/9",
+      cardRadius: Number(__p.radius) || 16,
+      tagsText: (__p.tags || (__p.tagLine ? __p.tagLine.split(/\s*[·-]\s*/) : [])).join(" / "),
+      titleStyle: "margin:0;min-width:0;font-family:var(--font-head);font-weight:600;font-synthesis:none;font-size:clamp(28px,2.6vw,44px);line-height:1.02;letter-spacing:-0.035em;font-kerning:normal;color:" + (on ? "var(--blue)" : "var(--black)") + ";transition:color 250ms ease",
+      btnStyle: "flex:none;display:flex;align-items:center;justify-content:center;width:clamp(44px,3.4vw,52px);height:clamp(44px,3.4vw,52px);border-radius:50%;color:var(--white);background:" + (on ? "var(--blue)" : "var(--black)") + ";transform:scale(" + (on ? 1.08 : 1) + ");transition:background 250ms ease,transform 380ms cubic-bezier(0.22,1,0.36,1)",
+      arrowStyle: "display:block;width:45%;height:45%;transform:" + (on ? "rotate(45deg)" : "rotate(0deg)") + ";transition:transform 380ms cubic-bezier(0.22,1,0.36,1)"
+    };
+  }
+}
+</script>
+</body>
+</html>
