@@ -1923,11 +1923,12 @@ class Component extends DCLogic {
       this.stripHover();
       const SAVED = this.SAVED;
       SAVED.forEach(id => { const el = document.getElementById(id); const p = __A("assets/slots/" + id + ".webp"); if (el && el.getAttribute("src") !== p) el.setAttribute("src", p); });
-      document.querySelectorAll("video[data-hsrc]:not([data-clip])").forEach(v => { const h = v.getAttribute("data-hsrc"); if (h && h.indexOf("{{") < 0 && v.getAttribute("src") !== h) { v.setAttribute("src", h); v.muted = true; const p = v.play(); if (p && p.catch) p.catch(() => {}); } });
+      document.querySelectorAll("video[data-hsrc]:not([data-clip])").forEach(v => { const h = v.getAttribute("data-hsrc"); if (h && h.indexOf("{{") < 0 && v.getAttribute("src") !== h) { v.defaultMuted = true; v.muted = true; v.setAttribute("src", h); const p = v.play(); if (p && p.catch) p.catch(() => {}); } });
       this.loadClips();
       document.querySelectorAll("video[data-case-video]").forEach(v => {
         const ds = v.getAttribute("data-src");
-        if (ds && ds.indexOf("{{") < 0 && v.getAttribute("src") !== ds) v.setAttribute("src", ds);
+        if (!v.dataset.muteInit) { v.dataset.muteInit = "1"; v.defaultMuted = true; v.muted = true; v.setAttribute("muted", ""); }
+        if (ds && ds.indexOf("{{") < 0 && v.getAttribute("src") !== ds) { v.muted = true; v.setAttribute("src", ds); }
         if (v.dataset.sound && !v.controls) v.controls = true;
         if (!v.dataset.wired) {
           v.dataset.wired = "1";
