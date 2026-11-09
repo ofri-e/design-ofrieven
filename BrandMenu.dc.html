@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Brand — mobile menu</title>
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&amp;family=Figtree:ital,wght@0,300..900;1,300..900&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./brand.css">
+<style>
+.bm { position:fixed; inset:0; z-index:70; background:var(--white); display:flex; flex-direction:column; padding:18px var(--bm-pad,20px) 40px; color:var(--ink); }
+.bm-inline { position:absolute; inset:0; z-index:auto; }
+.bm-top { display:flex; align-items:center; justify-content:flex-end; height:44px; }
+.bm-close { width:44px; height:44px; padding:0; background:none; border:0; font-family:var(--font-body); font-size:24px; color:var(--ink); cursor:pointer; }
+.bm-links { display:flex; flex-direction:column; gap:8px; margin-top:32px; }
+.bm-link { color:var(--ink); display:flex; align-items:flex-start; gap:0.12em; }
+.bm-count { font-family:var(--font-body); font-weight:400; font-size:0.36em; line-height:1; letter-spacing:0; color:var(--ink); margin-top:0.3em; }
+.bm-foot { display:flex; flex-direction:column; gap:8px; margin-top:auto; color:var(--ink); }
+</style>
+</helmet>
+<div class="{{ rootCls }}" style="--bm-pad:{{ padX }}">
+  <div class="bm-top">
+    <button type="button" class="bm-close" onClick="{{ onClose }}" aria-label="Close">×</button>
+  </div>
+  <nav class="bm-links" aria-label="Main">
+    <a href="#projects" onClick="{{ onWork }}" class="t-menu bm-link">Work<sup class="bm-count">{{ countText }}</sup></a>
+    <a href="#about" onClick="{{ onAbout }}" class="t-menu bm-link">About</a>
+  </nav>
+  <div class="t-body bm-foot">
+    <a href="mailto:ylb.ofri.even@gmail.com" target="_blank" rel="noopener">ylb.ofri.even@gmail.com</a>
+    <a href="https://www.instagram.com/ofri.e.design/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.linkedin.com/in/ofri-even-b74418321/" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"count":{"editor":"range","default":8,"min":0,"max":20,"step":1,"section":"Content"},"padX":{"editor":null,"tsType":"string"},"inline":{"editor":"boolean","default":false,"section":"Layout"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props || {};
+    const noop = (e) => { if (e && e.preventDefault) e.preventDefault(); };
+    const inline = p.inline === true || p.inline === "true";
+    return {
+      rootCls: "bm" + (inline ? " bm-inline" : ""),
+      padX: p.padX || "20px",
+      countText: "(" + (p.count ?? 8) + ")",
+      onClose: p.onClose || noop,
+      onWork: p.onWork || noop,
+      onAbout: p.onAbout || noop
+    };
+  }
+}
+</script>
+</body>
+</html>

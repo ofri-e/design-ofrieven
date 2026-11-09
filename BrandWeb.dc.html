@@ -21,44 +21,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Funnel+Sans:ital,wght@0,300..800;1,300..800&amp;family=Figtree:ital,wght@0,300..900;1,300..900&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./brand.css">
 <style>
-.t-display { font-family:var(--font-head); font-weight: 600; font-synthesis: none;  font-size: clamp(48px,10.5vw,272px);  line-height: 1; letter-spacing: -0.03em; }
-.t-h1 { font-family:var(--font-head); font-weight: 600; font-synthesis: none;  font-size: clamp(44px,7vw,104px);  line-height: 1.1; letter-spacing: -0.035em; }
-.t-h1-caps { letter-spacing: -0.035em; }
-.t-h2 { font-family:var(--font-head); font-weight: 600; font-synthesis: none;  font-size: clamp(28px,calc(2vw + 20px),44px);  line-height: 1.25; letter-spacing: -0.035em; }
-.t-h4 { font-family:var(--font-head); font-weight: 600; font-synthesis: none;  font-size: clamp(18px,calc(0.2vw + 16px),20px);  line-height: 1.3; letter-spacing: -0.035em; }
-.t-lead { font-family:var(--font-head); font-size: clamp(20px,calc(0.6vw + 16px),28px); font-weight: 400; line-height: 1.45; letter-spacing: -0.02em; }
-.t-nav { font-family:var(--font-head); font-size: clamp(18px,calc(0.4vw + 15px),22px); font-weight: 400; line-height: 1.5; letter-spacing: -0.01em; }
-.t-menu { font-family:var(--font-head); font-size: clamp(36px,11vw,56px); font-weight: 400; line-height: 1.1; letter-spacing: -0.03em; }
-.t-body-lg { font-family:var(--font-body); font-size: clamp(16px,calc(0.15vw + 15px),18px); font-weight: 400; line-height: 1.6; }
-.t-body { font-family:var(--font-body); font-size: clamp(15px,calc(0.1vw + 14.6px),16px); font-weight: 400; line-height: 24px; }
-.t-body-sm { font-family:var(--font-body); font-size: clamp(13px,calc(0.1vw + 12.6px),14px); font-weight: 400; line-height: 20px; }
-.t-medium { font-weight: 500; }
-.t-body-strong { font-family:var(--font-body); font-size: clamp(15px,calc(0.1vw + 14.6px),16px); font-weight: 500; line-height: 24px; }
-.t-label { font-family:var(--font-body); font-size: clamp(13px,calc(0.1vw + 12.6px),14px); font-weight: 500; line-height: 20px; letter-spacing: 0.03em; }
-.t-button { font-family:var(--font-body); font-size: clamp(11px,calc(0.1vw + 10.6px),12px); font-weight: 700; line-height: 1.2; letter-spacing: 0.04em; }
-.t-caption { font-family:var(--font-body); font-size: clamp(11px,calc(0.1vw + 10.6px),12px); font-weight: 500; line-height: 1.5; }
-
-:root { --surface: #F4F7FD; --surface-2: #E8EDF8; --line: #DEE5F2; --text-3: #A2ABBE; --text-2: #61697B; --ink: #161A25; --ink-rgb: 22,26,37; --white: #FFFFFF; --blue: #1818EA; --lime: #CAF51E; --orange: var(--lime); --black: #0A0A0A; --font-head: 'Funnel Sans',sans-serif; --font-body: Figtree,sans-serif; --fs-xs: clamp(11px,calc(0.19vw + 10.26px),13px); --fs-sm: clamp(13px,calc(0.19vw + 12.26px),15px); --fs-tag: clamp(12px,calc(0.5vw + 8px),15px); --fs-card-tag: clamp(12px,calc(0.45vw + 7.6px),14px); --fs-section: clamp(40px,5vw,88px); --radius-card: 16px; --radius-btn: 12px; --radius-tag: 0.67em; }
-
-html, body { margin: 0; padding: 0; background: var(--white); }
-* { box-sizing: border-box; }
-a { color: inherit; text-decoration: none; }
-a:hover { color: inherit; }
-::selection { background: var(--ink); color: var(--white); }
-:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 4px; }
-img { display: block; }
 html.om-nocursor:has([data-om-cursor]), html.om-nocursor:has([data-om-cursor]) body, html.om-nocursor:has([data-om-cursor]) a, html.om-nocursor:has([data-om-cursor]) button,
 html.om-nocursor:has([data-om-cursor]) input, html.om-nocursor:has([data-om-cursor]) textarea, html.om-nocursor:has([data-om-cursor]) [role="button"] { cursor: none; }
-@keyframes sh-bob { 0%, 100% { transform: translateY(-12%); } 50% { transform: translateY(12%); } } .sh-arrow { animation: sh-bob 1.6s cubic-bezier(0.45, 0, 0.55, 1) infinite; } @media (prefers-reduced-motion: reduce) { .sh-arrow { animation: none; } } .c-tag { font-family:var(--font-body); font-weight:500; font-size:var(--fs-tag); line-height:1.3; color:var(--ink); border:1px solid var(--ink); border-radius:var(--radius-tag); padding:0.36em 0.72em; white-space:nowrap; }
-.c-link { position:relative; display:inline-flex; align-items:center; gap:8px; padding-bottom:4px; font-family:var(--font-body); font-size:var(--fs-sm); font-weight:600; line-height:1.2; letter-spacing:0; color:var(--ink); text-decoration:none; white-space:nowrap; background-image:linear-gradient(currentColor,currentColor); background-repeat:no-repeat; background-position:left bottom; background-size:0% 1px; transition:background-size 450ms cubic-bezier(0.22,1,0.36,1), color 250ms ease; }
-.c-link::before { content:""; position:absolute; inset:-12px -8px; }
-.c-link:hover { color:var(--text-2); background-size:100% 1px; }
-.pn-btn { display:flex; align-items:center; justify-content:center; flex-shrink:0; width:clamp(40px,3.2vw,52px); height:clamp(40px,3.2vw,52px); border-radius:50%; background:var(--black); color:var(--white); transition:background-color 350ms cubic-bezier(0.22,1,0.36,1), transform 500ms cubic-bezier(0.34,1.56,0.64,1); }
-@media (max-width:767px) { .pn-btn { width:28px; height:28px; } }
-@media (hover:hover) { .pn:hover .pn-btn { background-color:var(--blue); transform:scale(1.08); } }
-.hdr-roll-in { display:block; transition:transform 420ms cubic-bezier(0.16,1,0.3,1); }
-.hdr-roll:hover .hdr-roll-in, .hdr-roll:focus-visible .hdr-roll-in { transform:translateY(-1.5em); }
 @keyframes bf-spin { to { transform: rotate(360deg); } } .bf-spin { animation: bf-spin 14s linear infinite; } @media (prefers-reduced-motion: reduce) { .bf-spin { animation: none; } } @keyframes om-dash-v { from { background-position: 50% 0; } to { background-position: 50% 11px; } }
 @keyframes om-draw-x { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 @keyframes om-draw-y { from { transform: scaleY(0); } to { transform: scaleY(1); } }
@@ -134,20 +100,7 @@ html.om-nocursor:has([data-om-cursor]) input, html.om-nocursor:has([data-om-curs
 </div>
 
 <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
-  <div style="position:fixed;inset:0;z-index:70;background:var(--white);display:flex;flex-direction:column;padding:18px {{ L.padX }} 40px">
-    <div style="display:flex;align-items:center;justify-content:flex-end;height:44px">
-      <button type="button" onClick="{{ closeMenu }}" aria-label="Close" style="width:44px;height:44px;padding:0;background:none;border:0;font-family:var(--font-body);font-size:24px;color:var(--ink);cursor:pointer">×</button>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:8px;margin-top:32px;font-family:var(--font-head);font-weight:400;letter-spacing:-0.03em">
-      <a href="#projects" onClick="{{ goProjectsM }}" class="t-menu" style="color:var(--ink)">Work</a>
-      <a href="#about" onClick="{{ goAboutM }}" class="t-menu" style="color:var(--ink)">About</a>
-    </div>
-    <div class="t-body" style="display:flex;flex-direction:column;gap:8px;margin-top:auto;color:var(--ink)">
-      <a href="mailto:ylb.ofri.even@gmail.com" target="_blank" rel="noopener">ylb.ofri.even@gmail.com</a>
-      <a href="https://www.instagram.com/ofri.e.design/" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://www.linkedin.com/in/ofri-even-b74418321/" target="_blank" rel="noopener">LinkedIn</a>
-    </div>
-  </div>
+  <dc-import name="BrandMenu" count="{{ menuN }}" pad-x="{{ L.padX }}" on-close="{{ closeMenu }}" on-work="{{ goProjectsM }}" on-about="{{ goAboutM }}" hint-size="100%,100%"></dc-import>
 </sc-if>
 
 
@@ -156,7 +109,7 @@ html.om-nocursor:has([data-om-cursor]) input, html.om-nocursor:has([data-om-curs
 <div style="padding-top:64px">
   <section style="padding:{{ L.secY }} {{ L.padX }} 0;max-width:none;margin:0 auto">
     <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:0 0 {{ S.s9 }}">
-      <h1 style="margin:0;font-family:var(--font-head);font-weight:600;font-synthesis:none;font-size:var(--fs-section);line-height:1.02;letter-spacing:-0.035em;font-kerning:normal;color:var(--ink)">About</h1>
+      <h1 class="t-section" style="margin:0;color:var(--ink)">About</h1>
     </div>
   </section>
 
@@ -165,10 +118,10 @@ html.om-nocursor:has([data-om-cursor]) input, html.om-nocursor:has([data-om-curs
       <div style="display:grid;grid-template-columns:{{ G.major }};gap:{{ L.secYS }} {{ L.gap }};align-items:start">
         <div>
           <div class="t-lead" style="display:flex;flex-direction:column;gap:1em;max-width:34em;color:var(--ink)"><p style="margin:0;text-wrap:pretty;hyphens:none">Hi! I'm Ofri :)</p><p style="margin:0;text-wrap:pretty;hyphens:none">Brand &amp; motion designer with a multidisciplinary background in visual communication. A&nbsp;Shenkar graduate with academic honors.</p><p style="margin:0;text-wrap:pretty;hyphens:none">I&nbsp;also have experience in product and UX/UI design, including enterprise SaaS products at Earnix, and a background in cybersecurity at ZIM.</p><p style="margin:0;text-wrap:pretty;hyphens:none">I&nbsp;combine systems thinking with attention to detail to create cohesive brands and experiences, from core identity to micro-interactions.</p></div>
-          <div style="margin:40px 0 0"><a href="https://drive.google.com/file/d/1kRy_HXR7HSxnaotcgfWLFIikDDMUegUX/view?usp=sharing" target="_blank" rel="noopener" onMouseEnter="{{ cvIn }}" onTouchStart="{{ cvPress }}" onMouseLeave="{{ cvOut }}" class="t-button" style="{{ cvStyle }}"><span aria-hidden="true" style="{{ cvFill }}"></span><span style="position:relative">View my CV</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="{{ cvArrow }}"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a></div>
+          <div style="margin:40px 0 0"><a href="https://drive.google.com/file/d/1kRy_HXR7HSxnaotcgfWLFIikDDMUegUX/view?usp=sharing" target="_blank" rel="noopener" onMouseEnter="{{ cvIn }}" onTouchStart="{{ cvPress }}" onMouseLeave="{{ cvOut }}" class="{{ cvCls }}"><span aria-hidden="true" class="c-btn-fill"></span><span class="c-btn-label">View my CV</span><svg class="c-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a></div>
           <div style="display:grid;grid-template-columns:{{ G.half }};gap:{{ L.secYS }} {{ L.gap }};margin:{{ S.s13 }} 0 0">
           <div>
-            <h3 style="margin:0 0 16px;font-family:var(--font-head);font-weight:600;font-size:clamp(20px,1.6vw,24px);line-height:1.2;letter-spacing:-0.02em;color:var(--ink)">Skills</h3>
+            <h3 class="t-h3" style="margin:0 0 16px;color:var(--ink)">Skills</h3>
             <div style="display:flex;flex-wrap:wrap;gap:8px">
               <span class="c-tag">Branding &amp; identity</span>
               <span class="c-tag">Motion &amp; title design</span>
@@ -181,7 +134,7 @@ html.om-nocursor:has([data-om-cursor]) input, html.om-nocursor:has([data-om-curs
             </div>
           </div>
           <div>
-            <h3 style="margin:0 0 16px;font-family:var(--font-head);font-weight:600;font-size:clamp(20px,1.6vw,24px);line-height:1.2;letter-spacing:-0.02em;color:var(--ink)">Tools</h3>
+            <h3 class="t-h3" style="margin:0 0 16px;color:var(--ink)">Tools</h3>
             <div style="display:flex;flex-wrap:wrap;gap:8px">
               <span class="c-tag">After Effects &amp; Premiere Pro</span>
               <span class="c-tag">Adobe Illustrator, Photoshop, InDesign</span>
@@ -208,7 +161,7 @@ html.om-nocursor:has([data-om-cursor]) input, html.om-nocursor:has([data-om-curs
 <div data-page-wrap="1" style="padding-top:64px">
   <section style="padding:{{ L.secY }} {{ L.padX }} 0;max-width:none;margin:0 auto">
     <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:0 0 {{ S.s9 }}">
-      <h1 style="margin:0;font-family:var(--font-head);font-weight:600;font-synthesis:none;font-size:var(--fs-section);line-height:1.02;letter-spacing:-0.035em;font-kerning:normal;color:var(--ink)">Work<span style="display:inline-block;position:relative;top:0.15em;vertical-align:top;margin-left:10px;font-family:var(--font-body);font-weight:500;font-size:clamp(14px,1.1vw,18px);letter-spacing:0;color:var(--ink)">({{ projCount }})</span></h1>
+      <h1 class="t-section" style="margin:0;color:var(--ink)">Work<span style="display:inline-block;position:relative;top:0.15em;vertical-align:top;margin-left:10px;font-family:var(--font-body);font-weight:500;font-size:clamp(14px,1.1vw,18px);letter-spacing:0;color:var(--ink)">({{ projCount }})</span></h1>
       <div style="display:flex;align-items:baseline;gap:16px">
         <a href="#projects" onClick="{{ setGridView }}" style="{{ gridBtnStyle }}" style-hover="color:var(--ink);background-size:100% 1px" style-before="content:'';position:absolute;inset:-12px -8px">Grid</a>
         <a href="#projects" onClick="{{ setListView }}" style="{{ listBtnStyle }}" style-hover="color:var(--ink);background-size:100% 1px" style-before="content:'';position:absolute;inset:-12px -8px">List</a>
@@ -520,18 +473,18 @@ html.om-nocursor:has([data-om-cursor]) input, html.om-nocursor:has([data-om-curs
 </div>
 </sc-if>
 
-<button type="button" onClick="{{ toTop }}" aria-label="Back to top" style="{{ fabStyle }}" style-hover="background:rgba(255,255,255,0.9)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;display:block"><path d="M12 19V5"></path><path d="M6 11l6-6 6 6"></path></svg></button>
+<button type="button" class="c-fab" onClick="{{ toTop }}" aria-label="Back to top" style="{{ fabStyle }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;display:block"><path d="M12 19V5"></path><path d="M6 11l6-6 6 6"></path></svg></button>
 <sc-if value="{{ lbOpen }}" hint-placeholder-val="{{ false }}">
 <div role="dialog" aria-modal="true" aria-label="Media viewer" onClick="{{ lbBg }}" onTouchStart="{{ lbTS }}" onTouchMove="{{ lbTM }}" onTouchEnd="{{ lbTE }}" onTouchCancel="{{ lbTE }}" style="touch-action:none;overscroll-behavior:contain;position:fixed;inset:0;z-index:95;background:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:clamp(64px,6vw,88px) clamp(16px,6vw,96px) clamp(24px,3vw,40px);box-sizing:border-box">
   <sc-if value="{{ lbMulti }}" hint-placeholder-val="{{ false }}"><span class="t-body-sm t-medium" style="position:absolute;left:16px;top:calc(24px + env(safe-area-inset-top,0px));color:var(--text-3)">{{ lbCount }}</span></sc-if>
   <sc-if value="{{ lbArrows }}" hint-placeholder-val="{{ false }}">
-    <button type="button" onClick="{{ lbPrev }}" aria-label="Previous" style="position:absolute;left:clamp(12px,1.6vw,28px);top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:0;background:rgba(255,255,255,0.14);color:var(--white);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px;display:block"><path d="M15 6l-6 6 6 6"></path></svg></button>
-    <button type="button" onClick="{{ lbNext }}" aria-label="Next" style="position:absolute;right:clamp(12px,1.6vw,28px);top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:0;background:rgba(255,255,255,0.14);color:var(--white);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px;display:block"><path d="M9 6l6 6-6 6"></path></svg></button>
+    <button type="button" class="c-icon-btn" onClick="{{ lbPrev }}" aria-label="Previous" style="position:absolute;left:clamp(12px,1.6vw,28px);top:50%;transform:translateY(-50%);width:48px;height:48px;z-index:2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px;display:block"><path d="M15 6l-6 6 6 6"></path></svg></button>
+    <button type="button" class="c-icon-btn" onClick="{{ lbNext }}" aria-label="Next" style="position:absolute;right:clamp(12px,1.6vw,28px);top:50%;transform:translateY(-50%);width:48px;height:48px;z-index:2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px;display:block"><path d="M9 6l6 6-6 6"></path></svg></button>
   </sc-if>
-  <button type="button" onClick="{{ lbClose }}" aria-label="Close" style="position:absolute;top:calc(12px + env(safe-area-inset-top,0px));right:12px;width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,0.14);color:var(--white);display:flex;align-items:center;justify-content:center;cursor:pointer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" style="width:20px;height:20px;display:block"><path d="M6 6l12 12"></path><path d="M18 6L6 18"></path></svg></button>
+  <button type="button" class="c-icon-btn" onClick="{{ lbClose }}" aria-label="Close" style="position:absolute;top:calc(12px + env(safe-area-inset-top,0px));right:12px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" style="width:20px;height:20px;display:block"><path d="M6 6l12 12"></path><path d="M18 6L6 18"></path></svg></button>
   <sc-if value="{{ lbIsImg }}" hint-placeholder-val="{{ false }}"><img key="{{ lbKey }}" ref="{{ lbImgRef }}" alt="{{ lbCap }}" style="display:block;max-width:100%;max-height:calc(100% - 56px);min-height:0;object-fit:contain;border-radius:8px"></sc-if>
   <sc-if value="{{ lbIsVid }}" hint-placeholder-val="{{ false }}"><video key="{{ lbKey }}" ref="{{ lbVidRef }}" controls="{{ true }}" autoPlay="{{ true }}" playsInline="{{ true }}" loop="{{ true }}" style="display:block;max-width:100%;max-height:calc(100% - 56px);min-height:0;border-radius:8px;background:#000"></video>
-    <button type="button" onClick="{{ lbFull }}" aria-label="Full screen" style="position:absolute;top:calc(12px + env(safe-area-inset-top,0px));right:64px;width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,0.14);color:var(--white);display:flex;align-items:center;justify-content:center;cursor:pointer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;display:block"><path d="M4 9V4h5"></path><path d="M20 9V4h-5"></path><path d="M4 15v5h5"></path><path d="M20 15v5h-5"></path></svg></button></sc-if>
+    <button type="button" class="c-icon-btn" onClick="{{ lbFull }}" aria-label="Full screen" style="position:absolute;top:calc(12px + env(safe-area-inset-top,0px));right:64px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;display:block"><path d="M4 9V4h5"></path><path d="M20 9V4h-5"></path><path d="M4 15v5h5"></path><path d="M20 15v5h-5"></path></svg></button></sc-if>
   <sc-if value="{{ lbHasCap }}" hint-placeholder-val="{{ false }}"><span class="t-body-sm" style="flex:none;max-width:min(100%,52ch);color:var(--white);text-align:center;text-wrap:balance">{{ lbCap }}</span></sc-if>
 </div>
 </sc-if>
@@ -548,7 +501,7 @@ html.om-nocursor:has([data-om-cursor]) input, html.om-nocursor:has([data-om-curs
   <div style="{{ contentInStyle }}">
   <section id="work" style="padding:clamp(96px,9.5vw,156px) {{ L.padX }} clamp(96px,9.5vw,156px);max-width:none;margin:0 auto">
     <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin:0 0 clamp(28px,2.8vw,44px)">
-      <h2 style="margin:0;font-family:var(--font-head);font-weight:600;font-synthesis:none;font-size:var(--fs-section);line-height:1.02;letter-spacing:-0.035em;font-kerning:normal;color:var(--ink)">Selected projects</h2>
+      <h2 class="t-section" style="margin:0;color:var(--ink)">Selected projects</h2>
       <a href="#projects" onClick="{{ goProjects }}" class="c-link">View all projects<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px;display:block;flex-shrink:0"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>
     </div>
     <div id="featured" style="display:grid;grid-template-columns:{{ brandCols }};gap:clamp(20px,2.2vw,32px)">
@@ -584,7 +537,7 @@ html.om-nocursor:has([data-om-cursor]) input, html.om-nocursor:has([data-om-curs
 </div><footer id="contact" style="position:relative;overflow:hidden;background:var(--black);color:var(--white);padding:clamp(56px,6vw,96px) {{ L.padX }} clamp(28px,2.6vw,40px);display:flex;flex-direction:column;gap:clamp(40px,4.5vw,72px)">
   <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:clamp(24px,3vw,48px);flex-wrap:wrap">
     <div style="display:flex;flex-direction:column;gap:clamp(16px,1.6vw,24px);min-width:0">
-      <h2 style="margin:0;font-family:var(--font-head);font-weight:600;font-synthesis:none;font-size:clamp(48px,6.4vw,112px);line-height:1.02;letter-spacing:-0.035em;font-kerning:normal;font-feature-settings:'kern' 1;color:var(--white)">Got something in mind?<br><span style="color:var(--lime)">Let’s talk.</span></h2>
+      <h2 class="t-footer-cta" style="margin:0;color:var(--white)">Got something in mind?<br><span style="color:var(--lime)">Let’s talk.</span></h2>
     </div>
     <a href="mailto:ylb.ofri.even@gmail.com" target="_blank" rel="noopener" aria-label="Get in touch by email" style="position:relative;flex:none;display:block;width:clamp(120px,10.4vw,176px);height:clamp(120px,10.4vw,176px);color:var(--black);text-decoration:none;transition:transform 400ms cubic-bezier(0.22,1,0.36,1)" style-hover="transform:scale(1.08)">
       <span aria-hidden="true" class="bf-spin" style="position:absolute;inset:0;display:block"><span aria-hidden="true" style="position:absolute;left:0;top:37%;width:100%;height:26%;background:var(--lime);transform:rotate(0deg)"></span><span aria-hidden="true" style="position:absolute;left:0;top:37%;width:100%;height:26%;background:var(--lime);transform:rotate(45deg)"></span><span aria-hidden="true" style="position:absolute;left:0;top:37%;width:100%;height:26%;background:var(--lime);transform:rotate(90deg)"></span><span aria-hidden="true" style="position:absolute;left:0;top:37%;width:100%;height:26%;background:var(--lime);transform:rotate(135deg)"></span></span>
@@ -592,9 +545,9 @@ html.om-nocursor:has([data-om-cursor]) input, html.om-nocursor:has([data-om-curs
     </a>
   </div>
   <nav aria-label="Contact links" style="display:flex;flex-direction:column;border-bottom:1px solid rgba(255,255,255,0.18)">
-      <a href="mailto:ylb.ofri.even@gmail.com" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:clamp(12px,1.1vw,18px) 0;border-top:1px solid rgba(255,255,255,0.18);color:var(--white);text-decoration:none;font-family:var(--font-head);font-weight:600;font-size:clamp(22px,2.2vw,36px);line-height:1;letter-spacing:-0.04em;font-kerning:normal;transition:color 250ms ease,padding-left 350ms cubic-bezier(0.22,1,0.36,1)" style-hover="color:var(--lime);padding-left:16px"><span style="flex:1 1 auto">Email</span><span style="font-family:var(--font-body);font-weight:500;font-size:clamp(12px,0.9vw,14px);letter-spacing:0.08em;color:rgba(255,255,255,0.6)">ylb.ofri.even@gmail.com</span><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:clamp(18px,1.6vw,26px);height:clamp(18px,1.6vw,26px);flex:none"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>
-      <a href="https://www.linkedin.com/in/ofri-even-b74418321/" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:clamp(12px,1.1vw,18px) 0;border-top:1px solid rgba(255,255,255,0.18);color:var(--white);text-decoration:none;font-family:var(--font-head);font-weight:600;font-size:clamp(22px,2.2vw,36px);line-height:1;letter-spacing:-0.04em;font-kerning:normal;transition:color 250ms ease,padding-left 350ms cubic-bezier(0.22,1,0.36,1)" style-hover="color:var(--lime);padding-left:16px"><span style="flex:1 1 auto">LinkedIn</span><span style="font-family:var(--font-body);font-weight:500;font-size:clamp(12px,0.9vw,14px);letter-spacing:0.08em;color:rgba(255,255,255,0.6)">/in/ofri-even</span><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:clamp(18px,1.6vw,26px);height:clamp(18px,1.6vw,26px);flex:none"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>
-      <a href="https://www.instagram.com/ofri.e.design/" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:clamp(12px,1.1vw,18px) 0;border-top:1px solid rgba(255,255,255,0.18);color:var(--white);text-decoration:none;font-family:var(--font-head);font-weight:600;font-size:clamp(22px,2.2vw,36px);line-height:1;letter-spacing:-0.04em;font-kerning:normal;transition:color 250ms ease,padding-left 350ms cubic-bezier(0.22,1,0.36,1)" style-hover="color:var(--lime);padding-left:16px"><span style="flex:1 1 auto">Instagram</span><span style="font-family:var(--font-body);font-weight:500;font-size:clamp(12px,0.9vw,14px);letter-spacing:0.08em;color:rgba(255,255,255,0.6)">@ofri.e.design</span><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:clamp(18px,1.6vw,26px);height:clamp(18px,1.6vw,26px);flex:none"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>
+      <a href="mailto:ylb.ofri.even@gmail.com" target="_blank" rel="noopener" class="c-contact t-contact"><span style="flex:1 1 auto">Email</span><span class="t-overline c-contact-meta">ylb.ofri.even@gmail.com</span><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="c-contact-icon"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>
+      <a href="https://www.linkedin.com/in/ofri-even-b74418321/" target="_blank" rel="noopener" class="c-contact t-contact"><span style="flex:1 1 auto">LinkedIn</span><span class="t-overline c-contact-meta">/in/ofri-even</span><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="c-contact-icon"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>
+      <a href="https://www.instagram.com/ofri.e.design/" target="_blank" rel="noopener" class="c-contact t-contact"><span style="flex:1 1 auto">Instagram</span><span class="t-overline c-contact-meta">@ofri.e.design</span><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="c-contact-icon"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>
   </nav>
   <div style="display:flex;align-items:center;justify-content:space-between;gap:16px 32px;flex-wrap:wrap;font-family:var(--font-body);font-weight:500;font-size:var(--fs-xs);letter-spacing:0.1em;color:rgba(255,255,255,0.6)">
     <span>© 2027 Ofri Even</span>
@@ -1907,7 +1860,7 @@ class Component extends DCLogic {
     return { ...K, year: ov.Year || "", disciplines: (((PROJECTS_ALL.find(p => p.slug === slug) || {}).tags) || []).join(", ") || ov.Disciplines || "", facts: K.overview.filter(r => r.k !== "Year" && r.k !== "Disciplines" && !(r.k === "Role" && ROLE_STEPS[slug] && UX_CASES.includes(slug)) && !(r.k === "Outcome" && STORY[slug] && UX_CASES.includes(slug))), lede: K.lede || "", hasLede: !!K.lede, hasPre: !!PRE, preSlotId: PRE ? PRE.sid : "", preSaved: PRE && this.SAVED.indexOf(PRE.sid) >= 0 ? __A("assets/slots/" + PRE.sid + ".webp") : undefined, preRatio: PRE ? (PRE.ratio || "16/9") : "16/9", blocksTop: "clamp(64px,7vw,112px)", blocks: K.blocks.map((b, bi) => {
       const sbi = bi - K.blocks.slice(0, bi).filter(x => x.kind === "heading" || x.kind === "features" || x.pre).length;
       const topGap = K.blocks.slice(0, bi).every(x => x.skip) ? "0px" : K.blocks[bi - 1].pre ? "clamp(16px,2vw,32px)" : "clamp(32px,3.4vw,56px)";
-      if (b.kind === "features") return { ...b, topGap, isFeatures: true, isHeading: false, isText: false, isMedia: false, items: b.items.map(it => ({ ...it, hasScale: !!it.scale, dots: it.scale ? Array.from({ length: 10 }, (_, k) => ({ style: "flex:none;width:10px;height:10px;border-radius:50%;background:" + (k < 7 ? "var(--lime)" : "var(--blue)") })) : [] })) };
+      if (b.kind === "features") return { ...b, topGap, isFeatures: true, isHeading: false, isText: false, isMedia: false, items: b.items.map(it => ({ ...it, hasScale: !!it.scale, dots: it.scale ? Array.from({ length: 10 }, (_, k) => ({ style: "flex:none;width:10px;height:10px;border-radius:50%;background:" + (k < 7 ? "var(--orange)" : "var(--blue)") })) : [] })) };
       if (b.kind === "heading") return { ...b, topGap, isHeading: true, isText: false, isMedia: false, items: [] };
       if (b.kind === "text") { const M = (SUB_META[slug] || {})[bi]; return { ...b, title: b.title && b.title.indexOf(" - ") > 0 ? b.title.split(" - ").map(x => x.replace(/ /g, "\u00a0")).join("\u00a0- ") : b.title, topGap: ((bi > 0 && K.blocks[bi - 1].kind === "heading") || (SUB_META[slug] && !b.kicker)) ? "clamp(24px,3vw,48px)" : topGap, isText: true, isMedia: false, hasKicker: !!b.kicker, kickerBig: !!b.kicker && !!SUB_META[slug], kickerSmall: !!b.kicker && !SUB_META[slug], hasTitle: !!b.title, hasRole: !!b.role && !M, hasMeta: !!M, snakeKey: "m" + bi, metaSnakeRows: M ? this.roleSnake(M.roles, (this.roleW || {})["m" + bi]).rows : [], metaRoleCols: narrow ? "repeat(2,minmax(0,1fr))" : "repeat(" + (M ? M.roles.length : 1) + ",minmax(0,1fr))", metaUser: M ? M.user || "" : "", metaChallenge: M ? M.challenge || "" : "", hasMetaOut: !!(M && M.outcome), metaOut: M && M.outcome ? M.outcome.map((text, i) => ({ text, n: "(" + (i + 1) + ")", anim: "animation:om-reveal linear both;animation-timeline:view();animation-range:entry " + (i * 8) + "% cover " + (22 + i * 6) + "%" })) : [], metaRoles: M ? M.roles.map((name, i, arr) => ({ name, notLast: i < arr.length - 1, line: narrow ? "flex:none;width:2px;height:12px;margin:4px 0 4px 20px;background-image:linear-gradient(180deg,var(--blue) 0 6px,transparent 6px 11px);background-size:2px 11px;background-repeat:repeat-y;animation:om-dash-v 900ms linear infinite" : "flex:1 1 24px;min-width:16px;height:2px;background-image:linear-gradient(90deg,var(--blue) 0 8px,transparent 8px 14px);background-size:14px 2px;background-repeat:repeat-x;animation:om-dash 900ms linear infinite;margin:0 8px", unit: narrow ? "display:flex;flex-direction:column;align-items:flex-start" : "display:flex;align-items:center;min-width:0;flex:" + (i < arr.length - 1 ? "1 1 auto" : "none"), anim: "animation:om-reveal linear both;animation-timeline:view();animation-range:entry " + Math.min(i * 3, 15) + "% entry " + (60 + Math.min(i * 6, 40)) + "%" + (narrow ? ";padding:6px 14px" : "") })) : [], metaGoals: M ? M.goals.map(([title, text], i) => ({ title, text, n: "(" + (i + 1) + ")", anim: "animation:om-reveal linear both;animation-timeline:view();animation-range:entry " + (i * 10) + "% cover " + (26 + i * 6) + "%" })) : [], items: [] }; }
       const n = b.items.length, cols = narrow || b.one ? 1 : (b.cols || (n === 1 ? 1 : n === 3 ? 3 : 2));
@@ -2747,9 +2700,7 @@ class Component extends DCLogic {
       aboutPills: this.PILLS.map(([label, bg, fg], i) => ({ label, ref: this.pillRefs[i], style: "position:absolute;left:0;top:0;opacity:0;will-change:transform;pointer-events:none;white-space:nowrap;font-weight:500;font-size:clamp(14px,calc(0.6vw + 12px),20px);line-height:1;padding:0.6em 1em 0.65em;border-radius:12px;background:" + bg + ";color:" + fg + ";border:1px solid " + (bg === "var(--white)" ? "var(--ink)" : bg) })),
       cvIn: () => { if (!window.matchMedia("(hover: none)").matches) this.setState({ cvOn: true }); },
       cvOut: () => this.setState({ cvOn: false }),
-      cvStyle: "position:relative;overflow:hidden;isolation:isolate;display:inline-flex;align-items:center;gap:clamp(8px,0.8vw,12px);height:clamp(42px,calc(1.6vw + 29px),52px);box-sizing:border-box;font-size:clamp(13px,calc(0.33vw + 10.3px),15px);font-weight:600;letter-spacing:0;padding:0 clamp(12px,1.1vw,16px) 0 clamp(16px,1.5vw,22px);border:1px solid " + (this.state.cvOn ? "var(--blue)" : "var(--ink)") + ";border-radius:12px;white-space:nowrap;text-decoration:none;background:var(--ink);color:var(--white);transition:border-color " + (this.state.cvOn ? "480ms" : "380ms") + " cubic-bezier(0.25,1,0.5,1)",
-      cvFill: "position:absolute;left:0;bottom:0;width:260%;aspect-ratio:1;border-radius:50%;background:var(--blue);z-index:0;pointer-events:none;will-change:transform;transform:translate(-50%,50%) scale(" + (this.state.cvOn ? 1 : 0) + ");transition:transform " + (this.state.cvOn ? "520ms cubic-bezier(0.25,1,0.5,1)" : "400ms cubic-bezier(0.5,0,0.25,1)"),
-      cvArrow: "position:relative;flex:none;width:clamp(17px,1.5vw,22px);height:clamp(17px,1.5vw,22px);display:block;transition:transform 380ms cubic-bezier(0.22,1,0.36,1);transform:translate(" + (this.state.cvOn ? "2px,-2px" : "0,0") + ")",
+      cvCls: "c-btn" + (this.state.cvOn ? " is-on" : ""),
       footCtaIn: () => { if (!window.matchMedia("(hover: none)").matches) this.setState({ fcOn: true }); },
       footCtaOut: () => this.setState({ fcOn: false }),
       footCtaStyle: "position:relative;overflow:hidden;isolation:isolate;display:inline-flex;align-items:center;gap:12px;height:46px;box-sizing:border-box;padding:11px 15px 11px 23px;border:1px solid " + (this.state.fcOn ? "var(--blue)" : "var(--white)") + ";border-radius:50px;white-space:nowrap;text-decoration:none;background:var(--white);color:" + (this.state.fcOn ? "var(--white)" : "var(--ink)") + ";transition:border-color " + (this.state.fcOn ? "480ms" : "380ms") + " cubic-bezier(0.25,1,0.5,1),color 300ms ease",
@@ -2765,6 +2716,7 @@ class Component extends DCLogic {
       narrow,
       wideNav: !narrow,
       menuOpen: this.state.menu,
+      menuN: PROJECTS.length,
       toggleMenu: () => this.setState(st => ({ menu: !st.menu })),
       closeMenu: () => this.setState({ menu: false }),
       goProjectsM: (ev) => { this.setState({ menu: false }); this.showProjects(ev); },
@@ -2777,7 +2729,7 @@ class Component extends DCLogic {
       isCase: idx >= 0,
       goBack: this.goBack,
       toTop: this.toTop,
-      fabStyle: "position:fixed;right:" + TK.L.padPx + "px;bottom:" + TK.L.padPx + "px;z-index:50;width:52px;height:52px;border-radius:50%;border:1px solid rgba(var(--ink-rgb),0.08);background:rgba(255,255,255,0.6);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);color:var(--ink);box-shadow:0 2px 12px rgba(var(--ink-rgb),0.08);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:opacity 300ms ease,transform 300ms cubic-bezier(0.16,1,0.3,1);opacity:" + (this.state.showTop ? 1 : 0) + ";transform:translateY(" + (this.state.showTop ? 0 : 12) + "px);pointer-events:" + (this.state.showTop ? "auto" : "none"),
+      fabStyle: "position:fixed;right:" + TK.L.padPx + "px;bottom:" + TK.L.padPx + "px;z-index:50;opacity:" + (this.state.showTop ? 1 : 0) + ";transform:translateY(" + (this.state.showTop ? 0 : 12) + "px);pointer-events:" + (this.state.showTop ? "auto" : "none"),
       goAboutPage: this.showAbout,
       sendMail: this.sendMail,
       formRef: this.formRef,

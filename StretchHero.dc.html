@@ -11,15 +11,15 @@
 <x-dc>
 <helmet>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Archivo+Black&amp;family=Figtree:wght@500;700&amp;display=swap">
+<link rel="stylesheet" href="./brand.css">
 <style>
-:root { --blue: #1818EA; --lime: #CAF51E; --white: #FFFFFF; --black: #0A0A0A; --ink: #161A25; }
 body{margin:0}
 @keyframes sh-bob { 0%, 100% { transform: translateY(-12%); } 50% { transform: translateY(12%); } }
 .sh-arrow { animation: sh-bob 1.6s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
 @media (prefers-reduced-motion: reduce) { .sh-arrow { animation: none; } }
 </style>
 </helmet>
-<div role="img" aria-label="Ofri Even — Brand and Motion Designer" style="position: relative; width: 100%; height: min(100svh, 62.5vw); min-height: 480px; box-sizing: border-box; padding: {{ padTop }}px {{ padX }} {{ padBottom }}px; display: flex; flex-direction: column; background: {{ bg }}; border-radius: {{ radius }}px; overflow: hidden">
+<div role="img" aria-label="Ofri Even — Brand and Motion Designer" style="position: relative; width: 100%; height: {{ rootH }}; min-height: {{ minH }}; box-sizing: border-box; padding: {{ padTop }}px {{ padX }} {{ padBottom }}px; display: flex; flex-direction: column; background: {{ bg }}; border-radius: {{ radius }}px; overflow: hidden">
 <div ref="{{ rootRef }}" style="flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; gap: {{ gap }}px">
 <div style="height: {{ hTop }}px; flex: none; display: flex; gap: {{ gap }}px">
 <sc-for list="{{ top }}" as="l" hint-placeholder-count="4">
@@ -50,7 +50,7 @@ body{margin:0}
 </sc-if>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"bg":{"editor":"color","default":"#1818EA","options":["#1818EA","#161A25","#CAF51E"],"section":"Color"},"ink":{"editor":"color","default":"#FFFFFF","options":["#FFFFFF","#161A25","#CAF51E"],"section":"Color"},"accent":{"editor":"color","default":"#CAF51E","options":["#CAF51E","#FFFFFF","#1818EA"],"section":"Color"},"speed":{"editor":"range","default":0.85,"min":0.3,"max":2.5,"step":0.1,"section":"Motion"},"stretch":{"editor":"range","default":1,"min":0.3,"max":1.6,"step":0.1,"section":"Motion"},"easing":{"editor":"enum","default":"smooth","options":["smooth","flow","soft","snappy"],"section":"Motion"},"playing":{"editor":"boolean","default":true,"section":"Motion"},"family":{"editor":"enum","default":"Anton","options":["Anton","Archivo Black"],"section":"Type"},"radius":{"editor":null,"tsType":"string"},"topSpace":{"editor":null,"tsType":"string"},"bottomSpace":{"editor":null,"tsType":"string"},"padX":{"editor":null,"tsType":"string"},"hideStar":{"editor":null,"tsType":"string"},"$preview":{"width":1440,"height":900}}'>
+<script type="text/x-dc" data-dc-script data-props='{"bg":{"editor":"color","default":"#1818EA","options":["#1818EA","#161A25","#CAF51E"],"section":"Color"},"ink":{"editor":"color","default":"#FFFFFF","options":["#FFFFFF","#161A25","#CAF51E"],"section":"Color"},"accent":{"editor":"color","default":"#CAF51E","options":["#CAF51E","#FFFFFF","#1818EA"],"section":"Color"},"speed":{"editor":"range","default":0.85,"min":0.3,"max":2.5,"step":0.1,"section":"Motion"},"stretch":{"editor":"range","default":1,"min":0.3,"max":1.6,"step":0.1,"section":"Motion"},"easing":{"editor":"enum","default":"smooth","options":["smooth","flow","soft","snappy"],"section":"Motion"},"playing":{"editor":"boolean","default":true,"section":"Motion"},"family":{"editor":"enum","default":"Anton","options":["Anton","Archivo Black"],"section":"Type"},"radius":{"editor":null,"tsType":"string"},"topSpace":{"editor":null,"tsType":"string"},"bottomSpace":{"editor":null,"tsType":"string"},"padX":{"editor":null,"tsType":"string"},"hideStar":{"editor":null,"tsType":"string"},"variant":{"editor":"enum","default":"auto","options":["auto","web","tablet","mobile"],"section":"Layout"},"$preview":{"width":1440,"height":900}}'>
 class Component extends DCLogic {
   constructor(props) {
     super(props);
@@ -71,6 +71,9 @@ class Component extends DCLogic {
     };
     this.measureBox();
     if ('ResizeObserver' in window) { this.ro = new ResizeObserver(this.measureBox); if (this.rootRef.current) this.ro.observe(this.rootRef.current); }
+    // pause the animation while the hero is off-screen or hidden (display:none) so it doesn't load the main thread during scroll
+    this.visible = true;
+    if ('IntersectionObserver' in window && this.rootRef.current) { this.io = new IntersectionObserver((en) => { this.visible = en.some((e) => e.isIntersecting); }); this.io.observe(this.rootRef.current); }
     try {
       Promise.all([document.fonts.load('400 200px Anton'), document.fonts.load('400 200px "Archivo Black"')]).then(() => { this.metrics = {}; this.forceUpdate(); });
     } catch (e) {}
@@ -78,12 +81,13 @@ class Component extends DCLogic {
   componentWillUnmount() {
     if (this.raf) cancelAnimationFrame(this.raf);
     if (this.ro) this.ro.disconnect();
+    if (this.io) this.io.disconnect();
   }
   tick(now) {
     if (this.last == null) this.last = now;
     const dt = Math.min(0.1, (now - this.last) / 1000);
     this.last = now;
-    if (this.props.playing !== false) {
+    if (this.props.playing !== false && this.visible !== false) {
       const sp = this.props.speed ?? 0.85;
       this.setState({ t: this.state.t + dt * sp });
     }
@@ -169,13 +173,21 @@ class Component extends DCLogic {
       return 0.5 * ((2 * a1) + (-a0 + a2) * x + (2 * a0 - 5 * a1 + 4 * a2 - a3) * x2 + (-a0 + 3 * a1 - 3 * a2 + a3) * x3);
     };
     const W = this.state.w, H = this.state.h, FW = this.state.fw || W;
+    let variant = this.props.variant || 'auto';
+    if (variant === 'auto') { const vw = (typeof window !== 'undefined' && window.innerWidth) || FW; variant = vw < 768 ? 'mobile' : (vw < 1200 ? 'tablet' : 'web'); }
+    const isWeb = variant === 'web';
+    // tablet / mobile keep the web proportions: text box ~1.96:1, gap ~1.06% of its width
+    const RATIO = 1.96, GAP_K = 0.0106;
+    const SPACES = { tablet: [128, 84], mobile: [100, 52] };
     const pad = Math.max(12, Math.round(FW * 0.017));
-    const gap = Math.max(6, Math.round(FW * 0.0094));
+    const gap = isWeb ? Math.max(6, Math.round(FW * 0.0094)) : Math.max(4, Math.round(W * GAP_K));
     const hasPadX = !!this.props.padX;
     const padX = hasPadX ? this.props.padX : pad + 'px';
-    const padTop = Math.max(pad, Number(this.props.topSpace) || 0);
-    const padBottom = Math.max(pad, Number(this.props.bottomSpace) || 0);
-    const IW = W, IH = H;
+    const padTop = isWeb ? Math.max(pad, Number(this.props.topSpace) || 0) : SPACES[variant][0];
+    const padBottom = isWeb ? Math.max(pad, Number(this.props.bottomSpace) || 0) : SPACES[variant][1];
+    const IW = W, IH = isWeb ? H : W / RATIO;
+    const rootH = isWeb ? 'min(100svh, 62.5vw)' : Math.round(padTop + padBottom + W / RATIO) + 'px';
+    const minH = isWeb ? '480px' : '0px';
     const r = Math.max(0.12, Math.min(0.88, interp(P0.r, P1.r, P2.r, P3.r, u)));
     const hTop = (IH - gap) * r, hBot = (IH - gap) * (1 - r);
     const weights = (row) => [0, 1, 2, 3].map((i) => {
@@ -196,6 +208,9 @@ class Component extends DCLogic {
     const k = star / 330;
     return {
       rootRef: this.rootRef,
+      rootH: rootH,
+      minH: minH,
+      variant: variant,
       bg: this.props.bg ?? 'var(--blue)',
       ink: this.props.ink ?? 'var(--white)',
       accent: this.props.accent ?? 'var(--lime)',

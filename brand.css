@@ -1,0 +1,133 @@
+/* ============================================================
+   Ofri Even — Brand & Motion · mini design system
+   One source for colors, type and UI components.
+   Used by: BrandWeb, BrandMenu, BrandFeatureCard, BrandProjectCard,
+   StretchHero and the Design system board.
+   ============================================================ */
+
+/* ---------- 1. Tokens ---------- */
+:root {
+  /* brand colors */
+  --blue: #1818EA;
+  --lime: #CAF51E;
+  --orange: #FF810A;
+  /* neutrals */
+  --black: #0A0A0A;
+  --ink: #161A25;
+  --ink-rgb: 22,26,37;
+  --text-2: #61697B;
+  --text-3: #A2ABBE;
+  --line: #DEE5F2;
+  --surface-2: #E8EDF8;
+  --surface: #F4F7FD;
+  --white: #FFFFFF;
+
+  /* type families */
+  --font-head: 'Funnel Sans',sans-serif;
+  --font-body: Figtree,sans-serif;
+
+  /* type sizes (fluid) */
+  --fs-xs: clamp(11px,calc(0.19vw + 10.26px),13px);
+  --fs-sm: clamp(13px,calc(0.19vw + 12.26px),15px);
+  --fs-tag: clamp(12px,calc(0.5vw + 8px),15px);
+  --fs-card-tag: clamp(12px,calc(0.45vw + 7.6px),14px);
+  --fs-section: clamp(40px,5vw,88px);
+
+  /* radii */
+  --radius-sm: 8px;
+  --radius-btn: 12px;
+  --radius-card: 16px;
+  --radius-tag: 0.67em;
+  --radius-round: 50%;
+
+  /* motion */
+  --ease-out: cubic-bezier(0.22,1,0.36,1);
+  --ease-spring: cubic-bezier(0.34,1.56,0.64,1);
+}
+
+/* ---------- 2. Base ---------- */
+html, body { margin: 0; padding: 0; background: var(--white); }
+* { box-sizing: border-box; }
+a { color: inherit; text-decoration: none; }
+a:hover { color: inherit; }
+::selection { background: var(--ink); color: var(--white); }
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 4px; }
+img { display: block; }
+
+/* ---------- 3. Text styles ---------- */
+/* headings — Funnel Sans */
+.t-display { font-family:var(--font-head); font-weight: 600; font-synthesis: none; font-size: clamp(48px,10.5vw,272px); line-height: 1; letter-spacing: -0.03em; }
+.t-footer-cta { font-family:var(--font-head); font-weight: 600; font-synthesis: none; font-size: clamp(48px,6.4vw,112px); line-height: 1.02; letter-spacing: -0.035em; font-kerning: normal; font-feature-settings: 'kern' 1; }
+.t-h1 { font-family:var(--font-head); font-weight: 600; font-synthesis: none; font-size: clamp(44px,7vw,104px); line-height: 1.1; letter-spacing: -0.03em; }
+.t-h1-caps { letter-spacing: -0.03em; }
+.t-section { font-family:var(--font-head); font-weight: 600; font-synthesis: none; font-size: var(--fs-section); line-height: 1.02; letter-spacing: -0.035em; font-kerning: normal; }
+.t-h2 { font-family:var(--font-head); font-weight: 600; font-synthesis: none; font-size: clamp(28px,calc(2vw + 20px),44px); line-height: 1.25; letter-spacing: -0.03em; }
+.t-contact { font-family:var(--font-head); font-weight: 600; font-size: clamp(22px,2.2vw,36px); line-height: 1; letter-spacing: -0.04em; font-kerning: normal; }
+.t-h3 { font-family:var(--font-head); font-weight: 600; font-size: clamp(20px,1.6vw,24px); line-height: 1.2; letter-spacing: -0.02em; }
+.t-h4 { font-family:var(--font-head); font-weight: 600; font-synthesis: none; font-size: clamp(18px,calc(0.2vw + 16px),20px); line-height: 1.3; letter-spacing: -0.03em; }
+.t-menu { font-family:var(--font-head); font-size: clamp(36px,11vw,56px); font-weight: 400; line-height: 1.1; letter-spacing: -0.03em; }
+.t-lead { font-family:var(--font-head); font-size: clamp(20px,calc(0.6vw + 16px),28px); font-weight: 400; line-height: 1.45; letter-spacing: -0.02em; }
+.t-nav { font-family:var(--font-head); font-size: clamp(18px,calc(0.4vw + 15px),22px); font-weight: 400; line-height: 1.5; letter-spacing: -0.01em; }
+/* body — Figtree */
+.t-body-lg { font-family:var(--font-body); font-size: clamp(16px,calc(0.15vw + 15px),18px); font-weight: 400; line-height: 1.6; }
+.t-body { font-family:var(--font-body); font-size: 16px; font-weight: 400; line-height: 24px; }
+.t-body-strong { font-family:var(--font-body); font-size: 16px; font-weight: 500; line-height: 24px; }
+.t-body-sm { font-family:var(--font-body); font-size: 14px; font-weight: 400; line-height: 20px; }
+.t-label { font-family:var(--font-body); font-size: 14px; font-weight: 500; line-height: 20px; letter-spacing: 0.03em; }
+.t-overline { font-family:var(--font-body); font-weight: 500; font-size: clamp(12px,0.9vw,14px); letter-spacing: 0.08em; }
+.t-button { font-family:var(--font-body); font-size: 12px; font-weight: 700; line-height: 1.2; letter-spacing: 0.04em; }
+.t-caption { font-family:var(--font-body); font-size: 12px; font-weight: 500; line-height: 1.5; }
+.t-medium { font-weight: 500; }
+
+/* ---------- 4. Components ---------- */
+
+/* Tag / pill */
+.c-tag { font-family:var(--font-body); font-weight:500; font-size:var(--fs-tag); line-height:1.3; color:var(--ink); border:1px solid var(--ink); border-radius:var(--radius-tag); padding:0.36em 0.72em; white-space:nowrap; }
+
+/* Text link with underline draw */
+.c-link { position:relative; display:inline-flex; align-items:center; gap:8px; padding-bottom:4px; font-family:var(--font-body); font-size:var(--fs-sm); font-weight:600; line-height:1.2; letter-spacing:0; color:var(--ink); text-decoration:none; white-space:nowrap; background-image:linear-gradient(currentColor,currentColor); background-repeat:no-repeat; background-position:left bottom; background-size:0% 1px; transition:background-size 450ms var(--ease-out), color 250ms ease; }
+.c-link::before { content:""; position:absolute; inset:-12px -8px; }
+.c-link:hover, .c-link.is-hover { color:var(--text-2); background-size:100% 1px; }
+
+/* Primary button (View my CV) — fill grows from the corner on hover / press */
+.c-btn { position:relative; overflow:hidden; isolation:isolate; display:inline-flex; align-items:center; gap:clamp(8px,0.8vw,12px); height:clamp(42px,calc(1.6vw + 29px),52px); box-sizing:border-box; font-family:var(--font-body); font-size:clamp(13px,calc(0.33vw + 10.3px),15px); font-weight:600; line-height:1.2; letter-spacing:0; padding:0 clamp(12px,1.1vw,16px) 0 clamp(16px,1.5vw,22px); border:1px solid var(--ink); border-radius:var(--radius-btn); white-space:nowrap; text-decoration:none; background:var(--ink); color:var(--white); transition:border-color 300ms ease; }
+.c-btn-fill { position:absolute; left:0; bottom:0; width:260%; aspect-ratio:1; border-radius:50%; background:var(--blue); z-index:0; pointer-events:none; will-change:transform; transform:translate(-50%,50%) scale(0); transition:transform 400ms cubic-bezier(0.5,0,0.25,1); }
+.c-btn-label { position:relative; }
+.c-btn-icon { position:relative; flex:none; width:clamp(17px,1.5vw,22px); height:clamp(17px,1.5vw,22px); display:block; transition:transform 380ms var(--ease-out); }
+.c-btn.is-on { border-color:var(--blue); }
+.c-btn.is-on .c-btn-fill { transform:translate(-50%,50%) scale(1); transition:transform 520ms cubic-bezier(0.25,1,0.5,1); }
+.c-btn.is-on .c-btn-icon { transform:translate(2px,-2px); }
+@media (hover:hover) {
+  .c-btn:hover { border-color:var(--blue); }
+  .c-btn:hover .c-btn-fill { transform:translate(-50%,50%) scale(1); transition:transform 520ms cubic-bezier(0.25,1,0.5,1); }
+  .c-btn:hover .c-btn-icon { transform:translate(2px,-2px); }
+}
+
+/* Round arrow button (prev / next project) */
+.pn-btn { display:flex; align-items:center; justify-content:center; flex-shrink:0; width:clamp(40px,3.2vw,52px); height:clamp(40px,3.2vw,52px); border-radius:50%; background:var(--black); color:var(--white); transition:background-color 350ms var(--ease-out), transform 500ms var(--ease-spring); }
+@media (max-width:767px) { .pn-btn { width:28px; height:28px; } }
+@media (hover:hover) { .pn:hover .pn-btn { background-color:var(--blue); transform:scale(1.08); } }
+.pn-btn.is-hover { background-color:var(--blue); transform:scale(1.08); }
+
+/* Header link — text rolls up on hover */
+.hdr-roll { display:flex; align-items:flex-start; height:1.5em; overflow:hidden; white-space:nowrap; }
+.hdr-roll-in { display:block; transition:transform 420ms cubic-bezier(0.16,1,0.3,1); }
+.hdr-roll:hover .hdr-roll-in, .hdr-roll:focus-visible .hdr-roll-in, .hdr-roll.is-hover .hdr-roll-in { transform:translateY(-1.5em); }
+
+/* Footer contact row */
+.c-contact { display:flex; align-items:center; justify-content:space-between; gap:24px; padding:clamp(12px,1.1vw,18px) 0; border-top:1px solid rgba(255,255,255,0.18); color:var(--white); text-decoration:none; transition:color 250ms ease, padding-left 350ms var(--ease-out); }
+.c-contact:hover, .c-contact.is-hover { color:var(--lime); padding-left:16px; }
+.c-contact-meta { color:rgba(255,255,255,0.6); }
+.c-contact-icon { width:clamp(18px,1.6vw,26px); height:clamp(18px,1.6vw,26px); flex:none; }
+
+/* Round icon button on media (lightbox close / full screen / arrows) */
+.c-icon-btn { width:44px; height:44px; border-radius:50%; border:0; background:rgba(255,255,255,0.14); color:var(--white); display:flex; align-items:center; justify-content:center; cursor:pointer; }
+
+/* Floating round button (back to top) */
+.c-fab { width:52px; height:52px; border-radius:50%; border:1px solid rgba(var(--ink-rgb),0.08); background:rgba(255,255,255,0.6); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px); color:var(--ink); box-shadow:0 2px 12px rgba(var(--ink-rgb),0.08); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:opacity 300ms ease, transform 300ms cubic-bezier(0.16,1,0.3,1), background-color 200ms ease; }
+.c-fab:hover, .c-fab.is-hover { background:rgba(255,255,255,0.9); }
+
+/* Brand star sticker (hero + footer "Get in touch") */
+.sh-arrow { animation: sh-bob 1.6s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
+@keyframes sh-bob { 0%, 100% { transform: translateY(-12%); } 50% { transform: translateY(12%); } }
+@media (prefers-reduced-motion: reduce) { .sh-arrow { animation: none; } }
