@@ -1848,8 +1848,33 @@ class Component extends DCLogic {
     e.preventDefault(); this.lbZ = 1; this.setState({ lb: { ...cur, list, i: at.i } }); document.documentElement.style.overflow = "hidden"; this.ovPush();
   };
   lbCloseFn = (fromPop) => { this.setState({ lb: null }); document.documentElement.style.overflow = ""; this.lbZ = 1; if (fromPop !== true) this.ovPop(); };
-  ovPush = () => {};
-  ovPop = () => {};
+  // browser history: every page change is a real history entry, so the phone's swipe back / forward and the back button work.
+  // canvas frames (page prop without site) keep replaceState so they never touch each other.
+  useHist = () => !(this.props && this.props.page && !this.props.site);
+  ovPush = () => { if (!this.useHist() || this.ovPushed) return; this.ovPushed = true; try { history.replaceState({ ...(history.state || {}), y: window.scrollY }, "", location.hash || "#top"); history.pushState({ ov: 1 }, "", location.hash || "#top"); } catch (e) {} };
+  ovPop = (nav) => { if (!this.ovPushed) return; this.ovPushed = false; if (nav) this._reuseEntry = true; else { this._skipPop = true; history.back(); } };
+  pushHash = (hash, fromY) => {
+    if (!this.useHist()) { history.replaceState(null, "", hash); return; }
+    if (this._reuseEntry) { this._reuseEntry = false; history.replaceState({ om: 1, y: 0 }, "", hash); this.pushed = (this.pushed || 0) + 1; return; }
+    const y0 = typeof this._fromY === "number" ? this._fromY : (typeof fromY === "number" ? fromY : window.scrollY); this._fromY = undefined;
+    try { history.replaceState({ ...(history.state || {}), y: y0 }, "", location.hash || "#top"); } catch (e) {}
+    history.pushState({ om: 1, y: 0 }, "", hash); this.pushed = (this.pushed || 0) + 1;
+  };
+  onPop = (e) => {
+    if (!this.useHist()) return;
+    if (this._skipPop) { this._skipPop = false; return; }
+    if (this.ovPushed && (this.state.lb || this.state.menu)) { this.ovPushed = false; if (this.state.lb) this.lbCloseFn(true); if (this.state.menu) this.setState({ menu: false }); return; }
+    if (this.state.lb) this.lbCloseFn(true);
+    if (this.state.menu) this.setState({ menu: false });
+    const h = (location.hash || "").replace("#", "");
+    const p = CASE_LIST.find(x => x.slug === h);
+    const r = p ? p.slug : h === "projects" ? "projects" : h === "about" ? "about" : "home";
+    this.pushed = Math.max(0, (this.pushed || 0) - 1);
+    const y = e && e.state && typeof e.state.y === "number" ? e.state.y : 0;
+    this._popping = true; setTimeout(() => { this._popping = false; }, 50);
+    if (r === this.state.route) { window.scrollTo(0, y); return; }
+    this.dissolve(() => this.setState({ route: r, hover: null }), y);
+  };
   kase = (slug) => {
     const K0 = CASES[slug];
     const PRE = K0 && K0.blocks[0] && K0.blocks[0].pre ? K0.blocks[0].items[0] : null;
@@ -2258,6 +2283,7 @@ class Component extends DCLogic {
     this.ratioTimer = setInterval(this.syncMedia, 400);
     this.svcTimer = setInterval(() => this.setState(st => ({ svc: (st.svc + 1) % (this.SERVICES.length * 2) })), 1900);
     window.addEventListener("hashchange", this.onHash);
+    window.addEventListener("popstate", this.onPop);
     window.addEventListener("mousemove", this.onMove, { passive: true });
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => this.forceUpdate());
     window.addEventListener("resize", this.measureRoles, { passive: true }); setTimeout(this.measureRoles, 0);
@@ -2326,6 +2352,7 @@ class Component extends DCLogic {
     if (this.ratioTimer) clearInterval(this.ratioTimer);
     window.removeEventListener("scroll", this.onScrollTop);
     window.removeEventListener("hashchange", this.onHash);
+    window.removeEventListener("popstate", this.onPop);
     window.removeEventListener("mousemove", this.onMove);
     if (this.introT) this.introT.forEach(clearTimeout);
     if (this.introFrameT) clearInterval(this.introFrameT);
@@ -2477,6 +2504,7 @@ class Component extends DCLogic {
   };
   goBack = (ev) => {
     if (ev) ev.preventDefault();
+    if (this.useHist() && this.pushed > 0) { history.back(); return; }
     const y = this.backScroll || 0;
     this.dissolve(() => { if (this.backFrom === "projects") this.setRoute("projects", "#projects"); else this.setRoute("home", "#top"); }, y);
   };
@@ -2505,6 +2533,7 @@ class Component extends DCLogic {
   open = (slug) => (ev) => {
     if (ev) ev.preventDefault();
     if (this.sliding) return;
+    this._fromY = window.scrollY;
     if (!PROJECTS.some(p => p.slug === this.state.route)) { this.backFrom = this.state.route; this.backScroll = window.scrollY; }
     const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const page = Array.from(document.querySelectorAll("[data-page-wrap]")).find(e => e.getClientRects().length);
@@ -2533,17 +2562,18 @@ class Component extends DCLogic {
           an.onfinish = an.oncancel = () => { el.style.boxShadow = ""; done(); };
         });
       });
-      history.replaceState(null, "", "#" + slug);
+      this.pushHash("#" + slug);
     }, 0);
   };
 
   setRoute = (r, hash) => {
     this.setState({ route: r, hover: null });
-    history.replaceState(null, "", hash);
+    this.pushHash(hash);
   };
   goRoute = (r, hash) => (ev) => {
     if (ev) ev.preventDefault();
     if (this.state.route === r) { window.scrollTo({ top: 0, behavior: "smooth" }); return; }
+    this._fromY = window.scrollY;
     this.dissolve(() => this.setRoute(r, hash), 0);
   };
   home = (ev) => this.goRoute("home", "#top")(ev);
@@ -2717,10 +2747,10 @@ class Component extends DCLogic {
       wideNav: !narrow,
       menuOpen: this.state.menu,
       menuN: PROJECTS.length,
-      toggleMenu: () => this.setState(st => ({ menu: !st.menu })),
-      closeMenu: () => this.setState({ menu: false }),
-      goProjectsM: (ev) => { this.setState({ menu: false }); this.showProjects(ev); },
-      goAboutM: (ev) => { this.setState({ menu: false }); this.showAbout(ev); },
+      toggleMenu: () => { if (this.state.menu) { this.setState({ menu: false }); this.ovPop(); } else { this.setState({ menu: true }); this.ovPush(); } },
+      closeMenu: () => { this.setState({ menu: false }); this.ovPop(); },
+      goProjectsM: (ev) => { this.setState({ menu: false }); if (this.state.route === "projects") this.ovPop(); else this.ovPop(true); this.showProjects(ev); },
+      goAboutM: (ev) => { this.setState({ menu: false }); if (this.state.route === "about") this.ovPop(); else this.ovPop(true); this.showAbout(ev); },
       gridStyle: "display:grid;grid-template-columns:" + TK.G.half + ";gap:" + TK.L.secYS + " " + TK.L.gap + ";",
       capStyle: "display:flex;align-items:flex-start;flex-direction:" + (tiny ? "column" : "row") + ";justify-content:space-between;gap:" + (tiny ? "10px" : "clamp(12px,2vw,32px)") + ";margin:20px 0 0;",
       pillsStyle: "display:flex;flex-wrap:wrap;justify-content:" + (tiny ? "flex-start" : "flex-end") + ";gap:8px;flex-shrink:0;",

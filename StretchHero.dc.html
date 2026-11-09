@@ -122,6 +122,16 @@ class Component extends DCLogic {
     return this.bez(0.6, 0, 0.15, 1, x);
   }
   measure(ch, fam) {
+    // Anton: exact glyph outlines from the font file (units/em 2048, rendered at 200px).
+    // Measuring with canvas is unreliable on iPhone Safari (wrong / early metrics -> uneven gaps, letters not reaching the edge).
+    if (fam === 'Anton') {
+      const A = { O: [-6.25, 91.016, 173.438, 1.562], F: [-7.617, 76.367, 171.875, 0], R: [-7.617, 91.602, 171.875, 0], I: [-6.055, 39.258, 171.875, 0], E: [-7.617, 78.613, 171.875, 0], V: [-2.246, 91.504, 171.973, 0], N: [-7.617, 91.992, 171.875, 0] }[ch];
+      if (A) {
+        const fa = 2409 / 2048 * 200, fd = 674 / 2048 * 200;
+        const base = (200 - (fa + fd)) / 2 + fa;
+        return { l: A[0], w: A[0] + A[1], top: base - A[2], h: A[2] + A[3] };
+      }
+    }
     this.metrics = this.metrics || {};
     const key = fam + '|' + ch;
     if (this.metrics[key]) return this.metrics[key];
