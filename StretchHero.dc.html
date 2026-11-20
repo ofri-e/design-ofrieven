@@ -195,8 +195,12 @@ class Component extends DCLogic {
     const padX = hasPadX ? this.props.padX : pad + 'px';
     const padTop = isWeb ? Math.max(pad, Number(this.props.topSpace) || 0) : SPACES[variant][0];
     const padBottom = isWeb ? Math.max(pad, Number(this.props.bottomSpace) || 0) : SPACES[variant][1];
-    const IW = W, IH = isWeb ? H : W / RATIO;
-    const rootH = isWeb ? 'min(100svh, 62.5vw)' : Math.round(padTop + padBottom + W / RATIO) + 'px';
+    // mobile: the blue hero takes ~62% of the screen so "Selected projects" peeks in the bottom third;
+    // capped at 110vw (≈ an iPhone's 62svh) so it also stays sane in canvas frames, never shorter than the web proportions.
+    const isMobile = variant === 'mobile';
+    const IW = W, IH = (isWeb || isMobile) ? H : W / RATIO;
+    const baseH = Math.round(padTop + padBottom + W / RATIO);
+    const rootH = isWeb ? 'min(100svh, 62.5vw)' : isMobile ? 'clamp(' + baseH + 'px, 62svh, 110vw)' : baseH + 'px';
     const minH = isWeb ? '480px' : '0px';
     const r = Math.max(0.12, Math.min(0.88, interp(P0.r, P1.r, P2.r, P3.r, u)));
     const hTop = (IH - gap) * r, hBot = (IH - gap) * (1 - r);
