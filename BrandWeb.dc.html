@@ -492,7 +492,7 @@ html.om-nocursor:has([data-om-cursor]) input, html.om-nocursor:has([data-om-curs
 <div>
   <section id="top" style="position:relative;z-index:3;box-sizing:border-box;padding:0;margin:0">
     <dc-import name="StretchHero" radius="0" top-space="150" bottom-space="104" pad-x="{{ L.padX }}" hide-star="true" hint-size="100%,62.5vw"></dc-import>
-    <a href="#work" onClick="{{ scrollToWork }}" aria-label="Brand and Motion Designer, scroll to projects" style="position: absolute; z-index: 5; right: {{ L.padX }}; bottom: 0; width: clamp(108px,16.2vw,270px); height: clamp(108px,16.2vw,270px); transform: translateY(24%) rotate(10deg); color: var(--black); text-decoration: none; display: block">
+    <a href="#work" onClick="{{ scrollToWork }}" aria-label="Brand and Motion Designer, scroll to projects" style="position: absolute; z-index: 5; right: {{ L.padX }}; bottom: {{ starBottom }}; width: clamp(108px,16.2vw,270px); height: clamp(108px,16.2vw,270px); transform: translateY({{ starY }}) rotate(10deg); color: var(--black); text-decoration: none; display: block">
       <span aria-hidden="true" style="position:absolute;left:0;top:37%;width:100%;height:26%;background:var(--lime);transform:rotate(0deg)"></span><span aria-hidden="true" style="position:absolute;left:0;top:37%;width:100%;height:26%;background:var(--lime);transform:rotate(45deg)"></span><span aria-hidden="true" style="position:absolute;left:0;top:37%;width:100%;height:26%;background:var(--lime);transform:rotate(90deg)"></span><span aria-hidden="true" style="position:absolute;left:0;top:37%;width:100%;height:26%;background:var(--lime);transform:rotate(135deg)"></span>
       <span style="position:absolute;left:0;top:2.7%;width:100%;height:100%;display:flex;align-items:center;justify-content:center;text-align:center;font-family:var(--font-body);font-weight:700;font-size:clamp(12.7px,1.52vw,25.4px);line-height:1.02;letter-spacing:-0.01em;color:var(--black)">Brand &amp; Motion<br>Designer</span>
       <span aria-hidden="true" style="position:absolute;left:50%;top:67%;width:13.3%;height:13.3%;margin-left:-6.65%;display:block"><svg class="sh-arrow" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:block;width:100%;height:100%"><path d="M12 3v17"></path><path d="M5 13l7 7 7-7"></path></svg></span>
@@ -2747,7 +2747,10 @@ class Component extends DCLogic {
       wideNav: !narrow,
       menuOpen: this.state.menu,
       menuN: PROJECTS.length,
-      workPadTop: narrow ? "64px" : "clamp(96px,9.5vw,156px)",
+      workPadTop: narrow ? "56px" : "clamp(96px,9.5vw,156px)",
+      // mobile: the hero fills the whole screen, so the star sits fully inside it as the "scroll down" cue
+      starBottom: narrow ? "24px" : "0px",
+      starY: narrow ? "0%" : "24%",
       toggleMenu: () => { if (this.state.menu) { this.setState({ menu: false }); this.ovPop(); } else { this.setState({ menu: true }); this.ovPush(); } },
       closeMenu: () => { this.setState({ menu: false }); this.ovPop(); },
       goProjectsM: (ev) => { this.setState({ menu: false }); if (this.state.route === "projects") this.ovPop(); else this.ovPop(true); this.showProjects(ev); },
