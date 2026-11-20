@@ -499,7 +499,7 @@ html.om-nocursor:has([data-om-cursor]) input, html.om-nocursor:has([data-om-curs
     </a>
   </section>
   <div style="{{ contentInStyle }}">
-  <section id="work" style="padding:clamp(96px,9.5vw,156px) {{ L.padX }} clamp(96px,9.5vw,156px);max-width:none;margin:0 auto">
+  <section id="work" style="padding:{{ workPadTop }} {{ L.padX }} clamp(96px,9.5vw,156px);max-width:none;margin:0 auto">
     <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin:0 0 clamp(28px,2.8vw,44px)">
       <h2 class="t-section" style="margin:0;color:var(--ink)">Selected projects</h2>
       <a href="#projects" onClick="{{ goProjects }}" class="c-link">View all projects<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px;display:block;flex-shrink:0"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>
@@ -2747,6 +2747,7 @@ class Component extends DCLogic {
       wideNav: !narrow,
       menuOpen: this.state.menu,
       menuN: PROJECTS.length,
+      workPadTop: narrow ? "64px" : "clamp(96px,9.5vw,156px)",
       toggleMenu: () => { if (this.state.menu) { this.setState({ menu: false }); this.ovPop(); } else { this.setState({ menu: true }); this.ovPush(); } },
       closeMenu: () => { this.setState({ menu: false }); this.ovPop(); },
       goProjectsM: (ev) => { this.setState({ menu: false }); if (this.state.route === "projects") this.ovPop(); else this.ovPop(true); this.showProjects(ev); },

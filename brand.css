@@ -31,7 +31,7 @@
   --fs-sm: clamp(13px,calc(0.19vw + 12.26px),15px);
   --fs-tag: clamp(12px,calc(0.5vw + 8px),15px);
   --fs-card-tag: clamp(12px,calc(0.45vw + 7.6px),14px);
-  --fs-section: clamp(40px,5vw,88px);
+  --fs-section: clamp(32px,5vw,88px);
 
   /* radii */
   --radius-sm: 8px;
